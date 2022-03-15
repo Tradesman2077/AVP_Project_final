@@ -1,0 +1,121 @@
+  .container-flex  {font-family: 'Space Mono', monospace;
+    margin-left: 2%;
+    
+  }
+  .row{
+    width: 100%;
+  }
+  .buttonR {
+    font-size:2vw;
+    text-align: center;
+    cursor: pointer;
+    outline: none;
+    color: #fff;
+    background-color: #000000;
+    border: none;
+    box-shadow: 0 4px #c7c7c7;
+    display: inline-block;
+  }
+  .buttonM {
+    font-size:1vw;
+    text-align: center;
+    cursor: pointer;
+    outline: none;
+    color: #fff;
+    background-color: #000000;
+    border: none;
+    box-shadow: 0 4px #c7c7c7;
+    display: inline-block;
+  }
+  .label{
+    font-size:1.5vw;
+  }
+  .buttonR:hover {background-color: #505050}
+  
+  .buttonR:active {
+    background-color: #2c2c2c;
+    box-shadow: 0 5px rgb(143, 142, 142);
+    transform: translateY(1px);
+  }
+  .buttonM:hover {background-color: #505050}
+  
+  .buttonM:active {
+    background-color: #2c2c2c;
+    box-shadow: 0 5px rgb(143, 142, 142);
+    transform: translateY(1px);
+  }
+  /* Mouse-over effects */
+/*.slider:hover {
+    opacity: 1; /* Fully shown on mouse-over */
+  
+  /* The slider itself */
+  
+.slidecontainer {
+    width: 100%; /* Width of the outside container */
+    
+  }
+  .slidecontainer2 {
+    width: 80%; /* Width of the outside container */
+    
+  }
+.slider {
+    -webkit-appearance: none;  /* Override default CSS styles */
+    appearance: none;
+    width: 100%; /* Full-width */
+    height: 8px; /* Specified height */
+    background: #d3d3d3; /* Grey background */
+    outline: none; /* Remove outline */
+    opacity: 0.7; /* Set transparency (for mouse-over effects on hover) */
+    -webkit-transition: .2s; /* 0.2 seconds transition on hover */
+    transition: opacity .2s;
+    margin-right: 2px;
+    
+  }
+  .slider::-webkit-slider-thumb {
+    -webkit-appearance: none; /* Override default look */
+    appearance: none;
+    width: 5px; /* Set a specific slider handle width */
+    height: 5px; /* Slider handle height */
+    background: #aa0404;
+    cursor: pointer; /* Cursor on hover */
+  }
+  
+  .slider::-moz-range-thumb {
+    width: 5px; /* Set a specific slider handle width */
+    height: 5px; /* Slider handle height */
+    background: #aa0404; 
+    cursor: pointer; /* Cursor on hover */
+  }
+  
+  input[type='checkbox']{
+    width: 100% !important;
+    height: 100% !important;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    -o-appearance: none;
+    appearance:none;
+    outline: 2px solid #aa0404;
+    box-shadow: none;
+    
+  }
+  input[type='checkbox']:checked {background-color: #aa0404;}
+  input[type='checkbox']:checked:after {color: white;position: absolute;}
+
+  .textGreen{
+    color: #0cb414;
+  }
+  .textWhite{
+    color: #fff;
+  }
+  .textRed{
+    color: #aa0404;
+  }
+  .textBlack{
+    color: #000000;
+  }
+  .bgGrey{
+    background-color: darkgray;
+  }
+  .bgWhite{
+    background-color: #fff;
+  }
