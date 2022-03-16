@@ -1,5 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { Chat } from 'src/instruments/chat';
+import { Chord } from 'src/instruments/chord';
+import { Clap } from 'src/instruments/clap';
+import { KickDrum } from 'src/instruments/kick-drum';
+
 
 import * as Tone from 'tone';
 
@@ -10,14 +15,10 @@ import * as Tone from 'tone';
 })
 export class SynthComponent implements OnInit {
   loop:any;
-  clapLoop:any;
-  clapSong:any;
   pluckSong:any;
-  kickLoop:any;
-  kickSong:any;
-  hatSong:any;
-  hatLoop:any;
   pluckLoop:any;
+  chordArp:any;
+  fft:any;
 
   time:any;
   currentBeat:any;
@@ -33,9 +34,6 @@ export class SynthComponent implements OnInit {
   bpm:any;
 
   selectedNotes:any
-  selectedClaps:any;
-  selectedKicks:any;
-  selectedHats:any;
   selectedPlucks:any
 
   synthChecks:any;
@@ -43,6 +41,7 @@ export class SynthComponent implements OnInit {
   kick:any;
   hat:any
   pluck:any;
+  chord:any;
   beatCount:any;
   sub:any;
   selectedSub:any;
@@ -51,12 +50,7 @@ export class SynthComponent implements OnInit {
 
   synthMute:any;
   synthVolWhenMuted:any;
-  clapMute:any;
-  clapVolWhenMuted:any;
-  kickMute:any;
-  kickVolWhenMuted:any;
-  chatMute:any;
-  chatVolWhenMuted:any;
+
   pluckMute:any;
   pluckVolWhenMuted:any;
   subMute:any;
@@ -64,7 +58,6 @@ export class SynthComponent implements OnInit {
   currentParamEdit:any;
   masterVol:any;
   masterBpm:any;
-
   synth1Pitch:any;
   synth2Pitch:any;
   synth3Pitch:any;
@@ -73,39 +66,38 @@ export class SynthComponent implements OnInit {
   synth6Pitch:any;
   synth7Pitch:any;
   synth8Pitch:any;
-
   synthFilterAttack:any;
   synthFilterDecay:any;
   synthFilterBase:any;
   synthDelayVal:any;
   hatEcho:any;
+  
+
+  chords = ["A3","A#3", "B3","B#3", "C3", "C#3", "D3", "D#3", "E3", "F3","F#3", "G3","G#3",
+    "A4", "A#4", "B4", "B#4", "C4", "C#4", "D4", "D#4", "E4", "F4", "F#4", "G4", "G#4"];
 
   constructor() {
+    this.fft = new Tone.FFT(128);
+    
+
+    this.kick = new KickDrum();
+    this.clap = new Clap();
+    this.hat = new Chat();
+    this.chord = new Chord();
+
     this.selectedNotes = [null, null, null, null, null, null, null, null]; //synth//
-    this.selectedClaps = [null, null, null, null, null, null, null, null];
-    this.selectedKicks = [null, null, null, null, null, null, null, null];
-    this.selectedHats = [null, null, null, null, null, null, null, null];
     this.selectedPlucks = [null, null, null, null, null, null, null, null];
     this.selectedSub = [null, null, null, null, null, null, null, null];
     this.synthChecks = [1,2,3,4,5,6,7,8];
     this.beatCount = 0;
-    
     Tone.Transport.bpm.value = 180;
-
-    
-
     //reverb
     this.reverb = new Tone.Reverb(4).toDestination();
     this.reverb.wet.value = 0;
-
-    //feedbackDelay
-    this.feedBackDelay = new Tone.FeedbackDelay(0.5, 0.5).toDestination();
-    this.feedBackDelay.wet.value = 0;
-
+    
     //pluckSynth
     this.pluck = new Tone.PluckSynth().connect(this.reverb);
     this.pluckSong = (time:any, trigger:any) =>{
-
       if(trigger!=null){
         this.pluck.triggerAttackRelease(trigger, "+2", time);
       }
@@ -113,21 +105,17 @@ export class SynthComponent implements OnInit {
     //subSynth
     this.sub = new Tone.MembraneSynth().toDestination();
     this.subSong = (time:any, trigger:any) =>{
-
       if(trigger!=null){
         this.sub.triggerAttackRelease(trigger, '8n', time);
       }
     } 
-
     //pingPongDelay
     this.pingPong = new Tone.PingPongDelay('8n').toDestination();
     this.pingPong.wet.value = 0;
-
+    
     //monoSynth
     this.monoSynth = new Tone.MonoSynth().connect(this.pingPong);
     this.song = (time:any, trigger:any) =>{
-      //this.currentBeat = Tone.Transport.position.toString().split(':');
-      
       if(this.beatCount == 8){
         this.beatCount = 1;
       }
@@ -135,61 +123,28 @@ export class SynthComponent implements OnInit {
         this.beatCount++;
       }
       this.updateBeatOnUi();
+      console.log(this.fft.getValue());
       if(trigger!=null){
         this.monoSynth.triggerAttackRelease(trigger, '16n', time);
       }
     }
-    //clap
-    this.clap = new Tone.Player("assets/clap.mp3").toDestination();
-    this.clapSong = (time:any, trigger:any) =>{
-      this.currentBeat = Tone.Transport.position.toString().split(':');
-      if(trigger!=null){
-
-        this.clap.playbackRate = trigger;
-        this.clap.start(time);
-      }
-    }
-    //kick
-    this.kick = new Tone.Player("assets/kick.wav").toDestination();
-    this.kickSong = (time:any, trigger:any) =>{
-      this.currentBeat = Tone.Transport.position.toString().split(':');
-      if(trigger!=null){
-        this.kick.playbackRate = trigger;
-        this.kick.start(time);
-      }
-    }
-    //hat
-    this.hat = new Tone.Player("assets/hat.mp3").connect(this.feedBackDelay);
-    this.hatSong = (time:any, trigger:any) =>{
-      this.currentBeat = Tone.Transport.position.toString().split(':');
-      if(trigger!=null){
-        this.hat.playbackRate = trigger;
-        this.hat.start(time);
-      }
-    }
+    Tone.Destination.connect(this.fft);
     ///loop
     this.loop = new Tone.Pattern(this.song, this.selectedNotes ).start(0);
-
-    //clap loop
-    this.clapLoop = new Tone.Pattern(this.clapSong, this.selectedClaps).start(0);
-
-    //kick loop
-    this.kickLoop = new Tone.Pattern(this.kickSong, this.selectedKicks).start(0);
-
-    //hat loop
-    this.hatLoop = new Tone.Pattern(this.hatSong, this.selectedHats).start(0);
 
     //pluckLoop
     this.pluckLoop = new Tone.Pattern(this.pluckSong, this.selectedPlucks).start(0);
 
     //subLoop
     this.subLoop = new Tone.Pattern(this.subSong, this.selectedSub).start(0);
+
    }
    
   ngOnInit(): void {
-    
     Tone.start();
+   
     
+
     //initialise state of buttons and control selection
     for(let i = 0; i < this.synthChecks.length; i++){
     document.getElementById("check"+this.synthChecks[i].toString())?.addEventListener("click", async () => {
@@ -202,6 +157,18 @@ export class SynthComponent implements OnInit {
       }
       });
     }
+    for(let i = 0; i < this.synthChecks.length; i++){
+      document.getElementById("checkChord"+this.synthChecks[i].toString())?.addEventListener("click", async () => {
+        if(this.chord.selectedChord[i] != null){
+          this.chord.selectedChord[i] = null;
+        }
+        else{
+          let pitchslider = <HTMLInputElement>document.getElementById("checkChord"+this.synthChecks[i].toString()+"Pitch");
+          
+          this.chord.selectedChord[i] = pitchslider.value;
+        }
+        });
+      }
     for(let i = 0; i < this.synthChecks.length; i++){
     document.getElementById("checkPluck"+this.synthChecks[i].toString())?.addEventListener("click", async () => {
       if(this.selectedPlucks[i] != null){
@@ -225,35 +192,35 @@ export class SynthComponent implements OnInit {
         });
       }
     for(let i = 0; i < this.synthChecks.length; i++){
-      document.getElementById("clap"+this.synthChecks[i].toString())?.addEventListener("click", async () => {
-        if(this.selectedClaps[i] != null){        
-          this.selectedClaps[i] = null;
-        }
-        else{
-          let playBackSlider = <HTMLInputElement>document.getElementById("clap"+this.synthChecks[i].toString()+"Pitch");
-          this.selectedClaps[i] = playBackSlider.value;
-        }
-        });
-      }
-    for(let i = 0; i < this.synthChecks.length; i++){
       document.getElementById("kick"+this.synthChecks[i].toString())?.addEventListener("click", async () => {
-        if(this.selectedKicks[i] != null){
-          this.selectedKicks[i] = null;
+        if(this.kick.selectedKicks[i] != null){
+          this.kick.selectedKicks[i] = null;
           }
         else{
           let playBackSlider = <HTMLInputElement>document.getElementById("kick"+this.synthChecks[i].toString()+"Pitch");
-          this.selectedKicks[i] = playBackSlider.value;
+          this.kick.selectedKicks[i] = playBackSlider.value;
         }
         });
       }
+      for(let i = 0; i < this.synthChecks.length; i++){
+        document.getElementById("clap"+this.synthChecks[i].toString())?.addEventListener("click", async () => {
+          if(this.clap.selectedClaps[i] != null){
+            this.clap.selectedClaps[i] = null;
+            }
+          else{
+            let playBackSlider = <HTMLInputElement>document.getElementById("clap"+this.synthChecks[i].toString()+"Pitch");
+            this.clap.selectedClaps[i] = playBackSlider.value;
+          }
+          });
+        }
     for(let i = 0; i < this.synthChecks.length; i++){
       document.getElementById("chat"+this.synthChecks[i].toString())?.addEventListener("click", async () => {
-        if(this.selectedHats[i] != null){
-          this.selectedHats[i] = null;
+        if(this.hat.selectedHats[i] != null){
+          this.hat.selectedHats[i] = null;
           }
         else{
           let playBackSlider = <HTMLInputElement>document.getElementById("chat"+this.synthChecks[i].toString()+"Pitch");
-          this.selectedHats[i] = playBackSlider.value;
+          this.hat.selectedHats[i] = playBackSlider.value;
         }
           });
         }
@@ -274,29 +241,27 @@ export class SynthComponent implements OnInit {
   }
   play(){
     this.isPlaying = true;
-    this.beatCount =0;
     Tone.start();
     Tone.Transport.start();
     this.loop.start(0);
-    
-    this.clapLoop.start(0);
-    this.kickLoop.start(0);
-    this.hatLoop.start(0);
+
+    this.clap.clapLoop.start(0);
+    this.kick.kickLoop.start(0);
+    this.hat.chatLoop.start(0);
+    this.chord.chordLoop.start(0);
     this.pluckLoop.start(0);
     this.subLoop.start(0);
-    
   }
   stop(){
     this.loop.stop();
-    
-    this.clapLoop.stop();
-    this.kickLoop.stop();
-    this.hatLoop.stop();
+    this.clap.clapLoop.stop();
+    this.kick.kickLoop.stop();
+    this.hat.chatLoop.stop();
+    this.chord.chordLoop.stop(0);
     this.pluckLoop.stop();
     this.subLoop.stop();
     this.isPlaying = false;
     Tone.Transport.stop();
-    
   }
   changeBpm(){
     let bpmSlider = <HTMLInputElement>document.getElementById("bpm");
@@ -308,6 +273,14 @@ export class SynthComponent implements OnInit {
       let pitchslider = <HTMLInputElement>document.getElementById("check"+this.synthChecks[i].toString()+"Pitch");
       if(this.selectedNotes[i]!=null){
         this.selectedNotes[i] = pitchslider.value;
+      }
+    }
+  }
+  resetChordPitch(){
+    for(let i = 0; i < this.synthChecks.length; i++){
+      let pitchslider = <HTMLInputElement>document.getElementById("checkChord"+this.synthChecks[i].toString()+"Pitch");
+      if(this.chord.selectedChord[i]!=null){
+        this.chord.selectedChord[i] = pitchslider.value;
       }
     }
   }
@@ -356,17 +329,20 @@ export class SynthComponent implements OnInit {
   changePlaybackRate(sample:string){
     for(let i = 0; i < this.synthChecks.length; i++){
       let playbackslider = <HTMLInputElement>document.getElementById(sample+this.synthChecks[i].toString()+"Pitch");
-      if(sample == "clap" && this.selectedClaps[i]!=null){
-        this.selectedClaps[i] = playbackslider.value;
+      if(sample == "clap" && this.clap.selectedClaps[i]!=null){
+        this.clap.selectedClaps[i] = playbackslider.value;
       }
-      if(sample == "kick" && this.selectedKicks[i]!=null){
-        this.selectedKicks[i] = playbackslider.value;
+      if(sample == "kick" && this.kick.selectedKicks[i]!=null){
+        this.kick.selectedKicks[i] = playbackslider.value;
       }
-      if(sample == "chat" && this.selectedHats[i]!=null){
-        this.selectedHats[i] = playbackslider.value;
+      if(sample == "chat" && this.hat.selectedHats[i]!=null){
+        this.hat.selectedHats[i] = playbackslider.value;
       }
-      
     }
+  }
+  changeSubRelease(){
+    let slider = <HTMLInputElement>document.getElementById("subRelease");
+    this.sub.envelope.decay = slider.value;
   }
   changeAttackNoise(){
     let slider = <HTMLInputElement>document.getElementById("attackNoise");
@@ -391,33 +367,19 @@ export class SynthComponent implements OnInit {
       this.synthVolWhenMuted = this.monoSynth.volume.value;
       this.monoSynth.volume.value = -100;
     }
-    if(part == 'clap' && this.clapMute == true){
-      this.clapMute = false;
-      this.clap.volume.value = this.clapVolWhenMuted;
+    if(part == 'clap'){
+     this.clap.muteClap();
     }
-    else if(part == 'clap'){
-      this.clapMute = true;
-      this.clapVolWhenMuted = this.clap.volume.value;
-      this.clap.volume.value = -100;
+    if(part == 'kick'){
+      this.kick.muteKick();
     }
-    if(part == 'kick' && this.kickMute == true){
-      this.kickMute = false;
-      this.kick.volume.value = this.kickVolWhenMuted;
+    if(part == 'chat'){
+      this.hat.muteHat();
     }
-    else if(part == 'kick'){
-      this.kickMute = true;
-      this.kickVolWhenMuted = this.kick.volume.value;
-      this.kick.volume.value = -100;
+    if(part == 'chord'){
+      this.chord.muteChord();
     }
-    if(part == 'chat' && this.chatMute == true){
-      this.chatMute = false;
-      this.hat.volume.value = this.chatVolWhenMuted;
-    }
-    else if(part == 'chat'){
-      this.chatMute = true;
-      this.chatVolWhenMuted = this.hat.volume.value;
-      this.hat.volume.value = -100;
-    }
+
     if(part == 'pluck' && this.pluckMute == true){
       this.pluckMute = false;
       this.pluck.volume.value = this.pluckVolWhenMuted;
@@ -436,25 +398,13 @@ export class SynthComponent implements OnInit {
       this.subVolWhenMuted = this.sub.volume.value;
       this.sub.volume.value = -100;
     }
-    
   }
   unMute(){
-    if(this.clapMute == true){
-      this.clapMute = false;
-      this.clap.volume.value = this.clapVolWhenMuted;
-    }
-    if(this.synthMute == true){
-      this.synthMute = false;
-      this.monoSynth.volume.value = this.synthVolWhenMuted;
-    }
-    if(this.kickMute == true){
-      this.kickMute = false;
-      this.kick.volume.value = this.kickVolWhenMuted;
-    }
-    if(this.chatMute == true){
-      this.chatMute = false;
-      this.hat.volume.value = this.chatVolWhenMuted;
-    }
+    this.clap.unMute();
+    this.kick.unMute();
+    this.hat.unMute();
+    this.hat.unMute();
+    this.chord.unMute();
     if(this.subMute == true){
       this.subMute = false;
       this.sub.volume.value = this.subVolWhenMuted;
@@ -470,11 +420,7 @@ export class SynthComponent implements OnInit {
     this.currentParamEdit = this.masterVol;
     console.log(this.currentParamEdit);
   }
-  changeHatDouble(){
-    let slider = <HTMLInputElement>document.getElementById('hatDouble');
-    this.hatEcho = slider.value;
-    this.feedBackDelay.wet.value = slider.value;
-  }
+  
   displayVal(val:any){
     this.currentParamEdit = val;
   }
@@ -486,7 +432,7 @@ export class SynthComponent implements OnInit {
         div.style.color = "white";
       }
       else{
-        div.style.backgroundColor="white";
+        div.style.backgroundColor="rgb(253, 241, 226)";
         div.style.color = "black";
       }
     }

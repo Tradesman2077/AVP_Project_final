@@ -1,7 +1,10 @@
   .container-flex  {font-family: 'Space Mono', monospace;
-    margin-left: 2%;
+    padding-left: 2%;
+    
+    background-color: rgb(253, 241, 226);
     
   }
+ 
   .row{
     width: 100%;
   }
