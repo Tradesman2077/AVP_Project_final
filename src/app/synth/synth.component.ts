@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { FormsModule } from '@angular/forms';
 import { Chat } from 'src/instruments/chat';
 import { Chord } from 'src/instruments/chord';
 import { Clap } from 'src/instruments/clap';
@@ -14,11 +13,11 @@ import * as Tone from 'tone';
   styleUrls: ['./synth.component.css']
 })
 export class SynthComponent implements OnInit {
+  
   loop:any;
   pluckSong:any;
   pluckLoop:any;
   chordArp:any;
-  fft:any;
 
   time:any;
   currentBeat:any;
@@ -71,15 +70,13 @@ export class SynthComponent implements OnInit {
   synthFilterBase:any;
   synthDelayVal:any;
   hatEcho:any;
-  
+  canvas:any;
+  ctx:any;
 
   chords = ["A3","A#3", "B3","B#3", "C3", "C#3", "D3", "D#3", "E3", "F3","F#3", "G3","G#3",
     "A4", "A#4", "B4", "B#4", "C4", "C#4", "D4", "D#4", "E4", "F4", "F#4", "G4", "G#4"];
 
   constructor() {
-    this.fft = new Tone.FFT(128);
-    
-
     this.kick = new KickDrum();
     this.clap = new Clap();
     this.hat = new Chat();
@@ -90,6 +87,10 @@ export class SynthComponent implements OnInit {
     this.selectedSub = [null, null, null, null, null, null, null, null];
     this.synthChecks = [1,2,3,4,5,6,7,8];
     this.beatCount = 0;
+
+    
+
+
     Tone.Transport.bpm.value = 180;
     //reverb
     this.reverb = new Tone.Reverb(4).toDestination();
@@ -122,13 +123,15 @@ export class SynthComponent implements OnInit {
       else{
         this.beatCount++;
       }
-      this.updateBeatOnUi();
-      console.log(this.fft.getValue());
+    
+      
+      //draw output
+      
       if(trigger!=null){
         this.monoSynth.triggerAttackRelease(trigger, '16n', time);
       }
     }
-    Tone.Destination.connect(this.fft);
+
     ///loop
     this.loop = new Tone.Pattern(this.song, this.selectedNotes ).start(0);
 
@@ -138,12 +141,18 @@ export class SynthComponent implements OnInit {
     //subLoop
     this.subLoop = new Tone.Pattern(this.subSong, this.selectedSub).start(0);
 
+
+
    }
-   
+   ngAfterViewInit() {
+    this.canvas = <HTMLCanvasElement>document.getElementById("mycanvas");
+    this.ctx = this.canvas.getContext("2d");
+    
+    
+   }
   ngOnInit(): void {
     Tone.start();
-   
-    
+  
 
     //initialise state of buttons and control selection
     for(let i = 0; i < this.synthChecks.length; i++){
@@ -437,4 +446,10 @@ export class SynthComponent implements OnInit {
       }
     }
   }
+  updateOscilloscope(){
+    //window.requestAnimationFrame();
+  }
+  
+  
+  
 }

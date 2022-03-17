@@ -7,11 +7,12 @@ import { SynthComponent } from './synth/synth.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { FormsModule } from '@angular/forms';
 
+
+
 @NgModule({
   declarations: [
     AppComponent,
     SynthComponent,
-    
   ],
   imports: [
     BrowserModule,
