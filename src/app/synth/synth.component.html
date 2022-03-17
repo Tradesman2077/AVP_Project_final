@@ -16,8 +16,8 @@
                 {{this.currentParamEdit}}
             </div>
         </div>
-        <div class="col-2">
-            <canvas class="mycanvas" id="mycanvas" style="border:1px solid #000000;">yo</canvas>
+        <div class="col-2" style="margin-top: 1%;">
+            <sa-spinner-round styles='{"color": "#aa0404"}' *ngIf="isPlaying"></sa-spinner-round>
         </div>
         <div class="col-2">
             <p style="font-size:1.5vw;">Master Vol</p>
@@ -100,11 +100,10 @@
         <div class="col-1">
             <input type="checkbox" class="check" id="check8">
         </div>
-        <div class="col-2">
+        <div class="col-4">
             <button class="buttonM m-1" (click)="mute('synth')" [ngClass]="synthMute ? 'textRed': 'textWhite'">Mute</button>
-        </div>
-        <div class="col-2">
-           
+
+            <button class="buttonM m-1" (click)="randomise()" >Random</button>
         </div>
     </div>
 
@@ -205,11 +204,8 @@
         <div class="col-1">
             <input type="checkbox" class="check" id="checkChord8">
         </div>
-        <div class="col-2">
+        <div class="col-4">
             <button class="buttonM m-1" (click)="mute('chord')" [ngClass]="chord.mute ? 'textRed': 'textWhite'">Mute</button>
-        </div>
-        <div class="col-2">
-           
         </div>
     </div>
 
@@ -358,7 +354,8 @@
             </div>
         </div>
         <div class="col-4" style="font-size:1.5vw;">
-
+            <input type="range" class="slider" id="clap/snare"max="1" min="0"step="1" value="0"(mouseup)="clap.changeSample()" style="width: 25%">
+            <label class="label" for="attackNoise">Clap/Snare</label>
         </div>
 
     </div>
@@ -662,13 +659,11 @@
         <div class="col-1">
             <input type="checkbox" class="check" id="checkSub8">
         </div>
-        <div class="col-2">
+        <div class="col-4">
             <button class="buttonM m-1" (click)="mute('sub')" [ngClass]="subMute ? 'textRed': 'textWhite'">Mute</button>
-            
+            <button class="buttonM m-1" (click)="distort()" [ngClass]="isDist ? 'textRed': 'textWhite'">Distortion</button>
         </div>
-        <div class="col-2">
-            <!--somthing -->
-        </div>
+
     </div>
 
     <div class="row">

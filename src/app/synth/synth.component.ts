@@ -4,8 +4,8 @@ import { Chord } from 'src/instruments/chord';
 import { Clap } from 'src/instruments/clap';
 import { KickDrum } from 'src/instruments/kick-drum';
 
-
 import * as Tone from 'tone';
+
 
 @Component({
   selector: 'app-synth',
@@ -18,6 +18,9 @@ export class SynthComponent implements OnInit {
   pluckSong:any;
   pluckLoop:any;
   chordArp:any;
+
+  isDist:any;
+  dist:any;
 
   time:any;
   currentBeat:any;
@@ -70,8 +73,7 @@ export class SynthComponent implements OnInit {
   synthFilterBase:any;
   synthDelayVal:any;
   hatEcho:any;
-  canvas:any;
-  ctx:any;
+ 
 
   chords = ["A3","A#3", "B3","B#3", "C3", "C#3", "D3", "D#3", "E3", "F3","F#3", "G3","G#3",
     "A4", "A#4", "B4", "B#4", "C4", "C#4", "D4", "D#4", "E4", "F4", "F#4", "G4", "G#4"];
@@ -81,15 +83,16 @@ export class SynthComponent implements OnInit {
     this.clap = new Clap();
     this.hat = new Chat();
     this.chord = new Chord();
+    this.dist = new Tone.Distortion(0.8).toDestination();
 
     this.selectedNotes = [null, null, null, null, null, null, null, null]; //synth//
     this.selectedPlucks = [null, null, null, null, null, null, null, null];
     this.selectedSub = [null, null, null, null, null, null, null, null];
     this.synthChecks = [1,2,3,4,5,6,7,8];
     this.beatCount = 0;
-
-    
-
+    this.isDist =false;
+    this.dist.oversample = "2x";
+    this.dist.distortion = 0;
 
     Tone.Transport.bpm.value = 180;
     //reverb
@@ -105,6 +108,7 @@ export class SynthComponent implements OnInit {
     }
     //subSynth
     this.sub = new Tone.MembraneSynth().toDestination();
+    this.sub.connect(this.dist);
     this.subSong = (time:any, trigger:any) =>{
       if(trigger!=null){
         this.sub.triggerAttackRelease(trigger, '8n', time);
@@ -117,17 +121,18 @@ export class SynthComponent implements OnInit {
     //monoSynth
     this.monoSynth = new Tone.MonoSynth().connect(this.pingPong);
     this.song = (time:any, trigger:any) =>{
+      
       if(this.beatCount == 8){
         this.beatCount = 1;
+
       }
       else{
         this.beatCount++;
       }
-    
-      
-      //draw output
-      
+      this.updateBeatOnUi();
       if(trigger!=null){
+
+        
         this.monoSynth.triggerAttackRelease(trigger, '16n', time);
       }
     }
@@ -140,20 +145,10 @@ export class SynthComponent implements OnInit {
 
     //subLoop
     this.subLoop = new Tone.Pattern(this.subSong, this.selectedSub).start(0);
-
-
-
    }
-   ngAfterViewInit() {
-    this.canvas = <HTMLCanvasElement>document.getElementById("mycanvas");
-    this.ctx = this.canvas.getContext("2d");
-    
-    
-   }
+ 
   ngOnInit(): void {
     Tone.start();
-  
-
     //initialise state of buttons and control selection
     for(let i = 0; i < this.synthChecks.length; i++){
     document.getElementById("check"+this.synthChecks[i].toString())?.addEventListener("click", async () => {
@@ -250,6 +245,7 @@ export class SynthComponent implements OnInit {
   }
   play(){
     this.isPlaying = true;
+ 
     Tone.start();
     Tone.Transport.start();
     this.loop.start(0);
@@ -422,6 +418,10 @@ export class SynthComponent implements OnInit {
       this.pluckMute = false;
       this.pluck.volume.value = this.pluckVolWhenMuted;
     }
+    if(this.synthMute == true){
+      this.synthMute = false;
+      this.monoSynth.volume.value = this.synthVolWhenMuted;
+    }
   }
   changeVol(){
     let volSlider = <HTMLInputElement>document.getElementById("vol");
@@ -446,10 +446,22 @@ export class SynthComponent implements OnInit {
       }
     }
   }
-  updateOscilloscope(){
-    //window.requestAnimationFrame();
+  randomise(){
+    for(let i = 0; i < this.selectedNotes.length; i++){
+      if(this.selectedNotes[i]!=null){
+        this.selectedNotes[i] = Math.floor(Math.random() * 1000) + 1;
+      }
+      
+    }
   }
-  
-  
-  
+  distort(){
+    if(this.isDist){
+        this.dist.distortion = 0;
+        this.isDist = false;
+    }
+    else{
+        this.dist.distortion= 1;
+        this.isDist = true;
+    }
+  }
 }

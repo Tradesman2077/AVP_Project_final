@@ -6,6 +6,7 @@ import { AppComponent } from './app.component';
 import { SynthComponent } from './synth/synth.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { FormsModule } from '@angular/forms';
+import { SpinnersAngularModule } from 'spinners-angular';
 
 
 
@@ -13,13 +14,14 @@ import { FormsModule } from '@angular/forms';
   declarations: [
     AppComponent,
     SynthComponent,
+    
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     NgbModule,
-    FormsModule
-
+    FormsModule,
+    SpinnersAngularModule
   ],
   providers: [],
   bootstrap: [AppComponent]

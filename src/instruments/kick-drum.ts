@@ -9,14 +9,18 @@ export class KickDrum {
     kickLoop:any;
     mute:boolean;
     kickVolWhenMuted:any;
+    
 
 
     constructor(){
-
+        
+    
+       
         this.inst = new Tone.Player("assets/kick.wav").toDestination();
-
+        
         this.mute = false;
         this.kickVolWhenMuted = 0;
+        
 
         this.selectedKicks = [null, null, null, null, null, null, null, null];
 
@@ -45,5 +49,6 @@ export class KickDrum {
             this.inst.volume.value = this.kickVolWhenMuted;
           }
     }
+    
 
 }

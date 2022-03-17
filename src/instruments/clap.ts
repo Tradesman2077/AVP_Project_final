@@ -50,5 +50,14 @@ export class Clap {
             this.inst.volume.value = this.clapVolWhenMuted;
           }
     }
+    changeSample(){
+        let slider = <HTMLInputElement>document.getElementById('clap/snare');
+        if(slider.value != "0"){
+            this.inst.load("assets/snare.wav");
+        }
+        else{
+            this.inst.load("assets/clap.mp3");
+        }
+    }
 
 }
