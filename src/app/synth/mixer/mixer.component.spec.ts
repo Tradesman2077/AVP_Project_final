@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { SynthComponent } from './synth.component';
+import { MixerComponent } from './mixer.component';
 
-describe('SynthComponent', () => {
-  let component: SynthComponent;
-  let fixture: ComponentFixture<SynthComponent>;
+describe('MixerComponent', () => {
+  let component: MixerComponent;
+  let fixture: ComponentFixture<MixerComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ SynthComponent ]
+      declarations: [ MixerComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(SynthComponent);
+    fixture = TestBed.createComponent(MixerComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

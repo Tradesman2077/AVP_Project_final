@@ -5,7 +5,7 @@ import { Clap } from 'src/instruments/clap';
 import { KickDrum } from 'src/instruments/kick-drum';
 
 import * as Tone from 'tone';
-
+import { Chebyshev, Filter } from 'tone';
 
 @Component({
   selector: 'app-synth',
@@ -73,6 +73,9 @@ export class SynthComponent implements OnInit {
   synthFilterBase:any;
   synthDelayVal:any;
   hatEcho:any;
+  fold:any;
+  waveCounter:any;
+  hpFilter:any;
  
 
   chords = ["A3","A#3", "B3","B#3", "C3", "C#3", "D3", "D#3", "E3", "F3","F#3", "G3","G#3",
@@ -84,6 +87,8 @@ export class SynthComponent implements OnInit {
     this.hat = new Chat();
     this.chord = new Chord();
     this.dist = new Tone.Distortion(0.8).toDestination();
+    this.fold = new Chebyshev(1).toDestination();
+    this.hpFilter = new Tone.Filter(500,'highpass');
 
     this.selectedNotes = [null, null, null, null, null, null, null, null]; //synth//
     this.selectedPlucks = [null, null, null, null, null, null, null, null];
@@ -93,14 +98,17 @@ export class SynthComponent implements OnInit {
     this.isDist =false;
     this.dist.oversample = "2x";
     this.dist.distortion = 0;
+    this.waveCounter = 1;
 
     Tone.Transport.bpm.value = 180;
     //reverb
     this.reverb = new Tone.Reverb(4).toDestination();
     this.reverb.wet.value = 0;
-    
+
     //pluckSynth
     this.pluck = new Tone.PluckSynth().connect(this.reverb);
+    this.reverb.connect(this.fold);
+    this.fold.connect(this.hpFilter);
     this.pluckSong = (time:any, trigger:any) =>{
       if(trigger!=null){
         this.pluck.triggerAttackRelease(trigger, "+2", time);
@@ -117,32 +125,28 @@ export class SynthComponent implements OnInit {
     //pingPongDelay
     this.pingPong = new Tone.PingPongDelay('8n').toDestination();
     this.pingPong.wet.value = 0;
-    
+
     //monoSynth
     this.monoSynth = new Tone.MonoSynth().connect(this.pingPong);
+    
+    this.pingPong.connect(this.hpFilter);
     this.song = (time:any, trigger:any) =>{
       
       if(this.beatCount == 8){
         this.beatCount = 1;
-
       }
       else{
         this.beatCount++;
       }
       this.updateBeatOnUi();
       if(trigger!=null){
-
-        
         this.monoSynth.triggerAttackRelease(trigger, '16n', time);
       }
     }
-
     ///loop
     this.loop = new Tone.Pattern(this.song, this.selectedNotes ).start(0);
-
     //pluckLoop
     this.pluckLoop = new Tone.Pattern(this.pluckSong, this.selectedPlucks).start(0);
-
     //subLoop
     this.subLoop = new Tone.Pattern(this.subSong, this.selectedSub).start(0);
    }
@@ -353,9 +357,9 @@ export class SynthComponent implements OnInit {
     let slider = <HTMLInputElement>document.getElementById("attackNoise");
     this.pluck.attackNoise = slider.value;
   }
-  changeDampening(){
-    let slider = <HTMLInputElement>document.getElementById("dampening");
-    this.pluck.dampening = slider.value;
+  changeResonance(){
+    let slider = <HTMLInputElement>document.getElementById("resonance");
+    this.pluck.resonance = slider.value;
   }
   changeRevWet(){
     let revSlider = <HTMLInputElement>document.getElementById("revWet");
@@ -464,4 +468,23 @@ export class SynthComponent implements OnInit {
         this.isDist = true;
     }
   }
+  changeFold(){
+    let slider = <HTMLInputElement>document.getElementById("fold");
+    this.fold.order = slider.value;
+  }
+  waveChange(){
+    if(this.waveCounter == 2){
+        this.waveCounter = 0;
+        this.monoSynth.oscillator.type = "sawtooth";
+    }
+    else if(this.waveCounter == 0){
+        this.monoSynth.oscillator.type = "triangle";
+        this.waveCounter++;
+    }
+    else{
+        this.monoSynth.oscillator.type = "square";
+        this.waveCounter++;
+    }
+    
+}
 }

@@ -10,16 +10,18 @@ export class Clap {
     mute:boolean;
     clapVolWhenMuted:any;
     reverb:any;
+    reverbOn:boolean;
 
 
     constructor(){
 
         this.inst = new Tone.Player("assets/clap.mp3");
         this.reverb = new Tone.Reverb().toDestination();
-        this.reverb.wet.value = 0.1;
+        this.reverb.wet.value = 0;
         this.inst.connect(this.reverb);
         this.mute = false;
         this.clapVolWhenMuted = 0;
+        this.reverbOn = false;
 
         this.selectedClaps = [null, null, null, null, null, null, null, null];
 
@@ -58,6 +60,18 @@ export class Clap {
         else{
             this.inst.load("assets/clap.mp3");
         }
+    }
+    reverbSwitch(){
+        if(this.reverbOn == false){
+            this.reverb.wet.value = 0.8;
+            this.reverbOn = true;
+        }
+        else{
+            this.reverbOn = false;
+            this.reverb.wet.value = 0;
+        }
+
+
     }
 
 }

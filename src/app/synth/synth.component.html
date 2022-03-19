@@ -30,7 +30,7 @@
             <p style="font-size:1.5vw;">BPM</p>
             <div class="slidecontainer2">
                 
-                <input type="range" class="slider" id="bpm" min="20" max="800" step="1" value="120"(mouseup)="changeBpm()" [(ngModel)]="masterBpm">
+                <input type="range" class="slider" id="bpm" min="20" max="400" step="1" value="120"(mouseup)="changeBpm()" [(ngModel)]="masterBpm">
             </div> 
         </div>
         <div class="col-2">
@@ -104,48 +104,51 @@
             <button class="buttonM m-1" (click)="mute('synth')" [ngClass]="synthMute ? 'textRed': 'textWhite'">Mute</button>
 
             <button class="buttonM m-1" (click)="randomise()" >Random</button>
+            <button class="buttonM m-1" (click)="waveChange()" *ngIf="monoSynth.oscillator.type == 'sawtooth'">Wave &#9706;</button>
+            <button class="buttonM m-1" (click)="waveChange()" *ngIf="monoSynth.oscillator.type == 'square'">Wave &#9632;</button>
+            <button class="buttonM m-1" (click)="waveChange()" *ngIf="monoSynth.oscillator.type == 'triangle'">Wave &#9650;</button>
         </div>
     </div>
 
     <div class="row">
         <div class="col-1 ">  
             <div class="slidecontainer" >
-                <input type="range" class="slider" id="check1Pitch"max="1000" min="5"step="5" value="400" (mouseup)="resetSynthPitch()" (mouseup)="displayVal(synth1Pitch)" [(ngModel)]="synth1Pitch">
+                <input type="range" class="slider" id="check1Pitch"max="1000" min="0"step="5" value="200" (mouseup)="resetSynthPitch()" (mouseup)="displayVal(synth1Pitch)" [(ngModel)]="synth1Pitch">
             </div>
         </div>
         <div class="col-1" >
             <div class="slidecontainer">
-                <input type="range" class="slider" id="check2Pitch"max="1000" min="5"step="5" value="400" (mouseup)="resetSynthPitch()" (mouseup)="displayVal(synth2Pitch)" [(ngModel)]="synth2Pitch">
+                <input type="range" class="slider" id="check2Pitch"max="1000" min="0"step="5" value="200" (mouseup)="resetSynthPitch()" (mouseup)="displayVal(synth2Pitch)" [(ngModel)]="synth2Pitch">
             </div>
         </div>
         <div class="col-1">
             <div class="slidecontainer">
-                <input type="range" class="slider" id="check3Pitch" max="1000" min="5"step="5" value="400" (mouseup)="resetSynthPitch()" (mouseup)="displayVal(synth3Pitch)" [(ngModel)]="synth3Pitch"> 
+                <input type="range" class="slider" id="check3Pitch" max="1000" min="0"step="5" value="200" (mouseup)="resetSynthPitch()" (mouseup)="displayVal(synth3Pitch)" [(ngModel)]="synth3Pitch"> 
             </div>
         </div>
         <div class="col-1">
             <div class="slidecontainer">
-                <input type="range" class="slider" id="check4Pitch"max="1000" min="5"step="5" value="400" (mouseup)="resetSynthPitch()" (mouseup)="displayVal(synth4Pitch)" [(ngModel)]="synth4Pitch"> 
+                <input type="range" class="slider" id="check4Pitch"max="1000" min="0"step="5" value="200" (mouseup)="resetSynthPitch()" (mouseup)="displayVal(synth4Pitch)" [(ngModel)]="synth4Pitch"> 
             </div>
         </div>
         <div class="col-1">
             <div class="slidecontainer">
-                <input type="range" class="slider" id="check5Pitch"max="1000" min="5"step="5" value="400" (mouseup)="resetSynthPitch()" (mouseup)="displayVal(synth5Pitch)" [(ngModel)]="synth5Pitch"> 
+                <input type="range" class="slider" id="check5Pitch"max="1000" min="0"step="5" value="200" (mouseup)="resetSynthPitch()" (mouseup)="displayVal(synth5Pitch)" [(ngModel)]="synth5Pitch"> 
             </div>
         </div>
         <div class="col-1">
             <div class="slidecontainer">
-                <input type="range" class="slider" id="check6Pitch"max="1000" min="5"step="5" value="400" (mouseup)="resetSynthPitch()" (mouseup)="displayVal(synth6Pitch)" [(ngModel)]="synth6Pitch">
+                <input type="range" class="slider" id="check6Pitch"max="1000" min="0"step="5" value="200" (mouseup)="resetSynthPitch()" (mouseup)="displayVal(synth6Pitch)" [(ngModel)]="synth6Pitch">
             </div>
         </div>
         <div class="col-1">
             <div class="slidecontainer">
-                <input type="range" class="slider" id="check7Pitch"max="1000" min="5"step="5" value="400" (mouseup)="resetSynthPitch()" (mouseup)="displayVal(synth7Pitch)" [(ngModel)]="synth7Pitch">
+                <input type="range" class="slider" id="check7Pitch"max="1000" min="0"step="5" value="200" (mouseup)="resetSynthPitch()" (mouseup)="displayVal(synth7Pitch)" [(ngModel)]="synth7Pitch">
             </div>
         </div>
         <div class="col-1">
             <div class="slidecontainer">
-                <input type="range" class="slider" id="check8Pitch"max="1000" min="5"step="5" value="400" (mouseup)="resetSynthPitch()" (mouseup)="displayVal(synth8Pitch)" [(ngModel)]="synth8Pitch">
+                <input type="range" class="slider" id="check8Pitch"max="1000" min="0"step="5" value="200" (mouseup)="resetSynthPitch()" (mouseup)="displayVal(synth8Pitch)" [(ngModel)]="synth8Pitch">
             </div>
         </div>
         <div class="col-2" style="font-size:1.5vw;">
@@ -206,6 +209,10 @@
         </div>
         <div class="col-4">
             <button class="buttonM m-1" (click)="mute('chord')" [ngClass]="chord.mute ? 'textRed': 'textWhite'">Mute</button>
+            <button class="buttonM m-1" (click)="chord.chorusOnOff()" [ngClass]="chord.chorusOn ? 'textRed': 'textWhite'">Chorus</button>
+            <button class="buttonM m-1" (click)="chord.waveChange()" *ngIf="chord.inst.oscillator.type == 'sawtooth'">Wave &#9706;</button>
+            <button class="buttonM m-1" (click)="chord.waveChange()" *ngIf="chord.inst.oscillator.type == 'square'">Wave &#9632;</button>
+            <button class="buttonM m-1" (click)="chord.waveChange()" *ngIf="chord.inst.oscillator.type == 'triangle'">Wave &#9650;</button>
         </div>
     </div>
 
@@ -267,11 +274,11 @@
             <label class="label" for="filterFreq">Note Delay</label>
         </div>
         <div class="col-3">
-            <input type="range" class="slider" id="monoSynthFilterBase"max="2000" min="0"step="10" value="200" (mouseup)="changeFilterBase()" style="width: 25%">
-            <label class="label" for="filterFreq">Filter env</label>
+            <input type="range" class="slider" id="changeDetune"max="48" min="0"step="1" value="0" (mouseup)="chord.changeDetune()" style="width: 25%">
+            <label class="label" for="filterFreq">Detune</label>
         </div>
         <div class="col-3">
-            <input type="range" class="slider" id="delayFeedback"max="1" min="0"step="0.01" value="0" (mouseup)="changeDelayAmt()" style="width: 25%">
+            <input type="range" class="slider" id="delayFeedbackChord"max="1" min="0"step="0.01" value="0" (mouseup)="chord.changeDelayAmt()" style="width: 25%">
             <label class="label" for="delayInput">Delay Amt</label>
         </div>
     </div>
@@ -305,12 +312,11 @@
         <div class="col-1">
             <input type="checkbox" class="check" id="clap8">
         </div>
-        <div class="col-2">
+        <div class="col-4">
             <button class="buttonM m-1" (click)="mute('clap')"[ngClass]="clap.mute ? 'textRed': 'textWhite'">Mute</button>
+            <button class="buttonM m-1" (click)="clap.reverbSwitch('clap')"[ngClass]="clap.reverbOn ? 'textRed': 'textWhite'">Reverb</button>
         </div>
-        <div class="col-2">
-            <!--somthing -->
-        </div>
+        
     </div>
     <div class="row">
         <div class="col-1 ">  
@@ -618,15 +624,16 @@
             <label class="label" for="attackNoise">Attack Noise</label>
         </div>
         <div class="col-3">
-            <input type="range" class="slider" id="dampening"max="7000" min="0"step="10" value="4000" (mouseup)="changeDampening()" style="width: 25%">
-            <label class="label" for="attackNoise">High Cut</label>
+            <input type="range" class="slider" id="resonance"max="1" min="0"step="0.1" value="0" (mouseup)="changeResonance()" style="width: 25%">
+            <label class="label" for="attackNoise">Resonance</label>
         </div>
         <div class="col-3">
             <input type="range" class="slider" id="revWet"max="1" min="0"step="0.01" value="0"(mouseup)="changeRevWet()" style="width: 25%">
             <label class="label" for="revWet">Reverb</label>
         </div>
         <div class="col-3">
-            
+            <input type="range" class="slider" id="fold"max="100" min="0"step="1" value="0"(mouseup)="changeFold()" style="width: 25%">
+            <label class="label" for="revWet">Fold</label>
         </div>
     </div>
     <div class="row mt-3" >
@@ -712,6 +719,7 @@
             <label class="label" for="attackNoise">Release</label>
         </div>    
     </div>
+    <app-mixer></app-mixer>
 </div>
     
 

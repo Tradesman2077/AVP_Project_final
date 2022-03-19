@@ -7,6 +7,7 @@ import { SynthComponent } from './synth/synth.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { FormsModule } from '@angular/forms';
 import { SpinnersAngularModule } from 'spinners-angular';
+import { MixerComponent } from './synth/mixer/mixer.component';
 
 
 
@@ -14,6 +15,7 @@ import { SpinnersAngularModule } from 'spinners-angular';
   declarations: [
     AppComponent,
     SynthComponent,
+    MixerComponent,
     
   ],
   imports: [
