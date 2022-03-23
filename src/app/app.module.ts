@@ -10,6 +10,8 @@ import { SpinnersAngularModule } from 'spinners-angular';
 import { KickdrumComponent } from './kickdrum/kickdrum.component';
 import { ClapsnareComponent } from './clapsnare/clapsnare.component';
 import { ChatComponent } from './chat/chat.component';
+import { PluckComponent } from './pluck/pluck.component';
+import { ChordComponent } from './chord/chord.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +19,9 @@ import { ChatComponent } from './chat/chat.component';
     SynthComponent,
     KickdrumComponent,
     ClapsnareComponent,
-    ChatComponent
+    ChatComponent,
+    PluckComponent,
+    ChordComponent
   ],
   imports: [
     BrowserModule,

@@ -12,12 +12,8 @@ import * as Tone from 'tone';
 export class SynthComponent implements OnInit {
   wave:any;
   loop:any;
-  pluckSong:any;
-  pluckLoop:any;
-  
   isDist:any;
   dist:any;
-
   time:any;
   currentBeat:any;
   currentBeatNum:any;
@@ -31,24 +27,16 @@ export class SynthComponent implements OnInit {
   song:any;
   bpm:any;
   mixer:any;
-
   selectedNotes:any
   selectedPlucks:any
-
   synthChecks:any;
-  pluck:any;
-  chord:any;
   beatCount:any;
   sub:any;
   selectedSub:any;
   subSong:any;
   subLoop:any;
-
   synthMute:any;
   synthVolWhenMuted:any;
-
-  pluckMute:any;
-  pluckVolWhenMuted:any;
   subMute:any;
   subVolWhenMuted:any;
   currentParamEdit:any;
@@ -66,8 +54,6 @@ export class SynthComponent implements OnInit {
   synthFilterDecay:any;
   synthFilterBase:any;
   synthDelayVal:any;
-  hatEcho:any;
-  fold:any;
   waveCounter:any;
   hpFilter:any;
   canvas:any;
@@ -78,10 +64,8 @@ export class SynthComponent implements OnInit {
 
   constructor() {
     this.wave = new Tone.Waveform(512);
-    this.chord = new Chord();
     this.dist = new Tone.Distortion(0.8).toDestination();
     this.hpFilter = new Tone.Filter(500,'highpass');
-    this.pluck = new Pluck();
 
     this.selectedNotes = [null, null, null, null, null, null, null, null]; //synth//
     this.selectedSub = [null, null, null, null, null, null, null, null];
@@ -146,28 +130,6 @@ export class SynthComponent implements OnInit {
       });
     }
     for(let i = 0; i < this.synthChecks.length; i++){
-      document.getElementById("checkChord"+this.synthChecks[i].toString())?.addEventListener("click", async () => {
-        if(this.chord.selectedChord[i] != null){
-          this.chord.selectedChord[i] = null;
-        }
-        else{
-          let pitchslider = <HTMLInputElement>document.getElementById("checkChord"+this.synthChecks[i].toString()+"Pitch");
-          this.chord.selectedChord[i] = pitchslider.value;
-        }
-        });
-      }
-    for(let i = 0; i < this.synthChecks.length; i++){
-    document.getElementById("checkPluck"+this.synthChecks[i].toString())?.addEventListener("click", async () => {
-      if(this.pluck.selectedPlucks[i] != null){
-        this.pluck.selectedPlucks[i] = null;
-      }
-      else{
-        let pitchslider = <HTMLInputElement>document.getElementById("checkPluck"+this.synthChecks[i].toString()+"Pitch");
-        this.pluck.selectedPlucks[i] = pitchslider.value;
-      }
-      });
-    }
-    for(let i = 0; i < this.synthChecks.length; i++){
       document.getElementById("checkSub"+this.synthChecks[i].toString())?.addEventListener("click", async () => {
         if(this.selectedSub[i] != null){
           this.selectedSub[i] = null;
@@ -199,14 +161,10 @@ export class SynthComponent implements OnInit {
     Tone.start();
     Tone.Transport.start();
     this.loop.start(0);
-    this.chord.chordLoop.start(0);
-    this.pluck.pluckLoop.start(0);
     this.subLoop.start(0);
   }
   stop(){
     this.loop.stop();
-    this.chord.chordLoop.stop();
-    this.pluck.pluckLoop.stop();
     this.subLoop.stop();
     this.isPlaying = false;
     Tone.Transport.stop();
@@ -221,22 +179,6 @@ export class SynthComponent implements OnInit {
       let pitchslider = <HTMLInputElement>document.getElementById("check"+this.synthChecks[i].toString()+"Pitch");
       if(this.selectedNotes[i]!=null){
         this.selectedNotes[i] = pitchslider.value;
-      }
-    }
-  }
-  resetChordPitch(){
-    for(let i = 0; i < this.synthChecks.length; i++){
-      let pitchslider = <HTMLInputElement>document.getElementById("checkChord"+this.synthChecks[i].toString()+"Pitch");
-      if(this.chord.selectedChord[i]!=null){
-        this.chord.selectedChord[i] = pitchslider.value;
-      }
-    }
-  }
-  resetPluckPitch(){
-    for(let i = 0; i < this.synthChecks.length; i++){
-      let pitchslider = <HTMLInputElement>document.getElementById("checkPluck"+this.synthChecks[i].toString()+"Pitch");
-      if(this.pluck.selectedPlucks[i]!=null){
-        this.pluck.selectedPlucks[i] = pitchslider.value;
       }
     }
   }
@@ -289,12 +231,6 @@ export class SynthComponent implements OnInit {
       this.synthVolWhenMuted = this.monoSynth.volume.value;
       this.monoSynth.volume.value = -100;
     }
-    if(part == 'chord'){
-      this.chord.muteChord();
-    }
-    if(part == 'pluck'){
-      this.chord.mutePluck();
-    }
     if(part == 'sub' && this.subMute == true){
       this.subMute = false;
       this.sub.volume.value = this.subVolWhenMuted;
@@ -306,8 +242,7 @@ export class SynthComponent implements OnInit {
     }
   }
   unMute(){
-    this.chord.unMute();
-    this.pluck.unMute();
+
     if(this.subMute == true){
       this.subMute = false;
       this.sub.volume.value = this.subVolWhenMuted;

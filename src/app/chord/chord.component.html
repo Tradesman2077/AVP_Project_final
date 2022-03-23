@@ -1,0 +1,106 @@
+<div class="row" >
+    <div class="col-12">
+        <h6 style="background-color: #d3d3d3;">Chord</h6>
+    </div>
+</div>
+
+<div class="row" >
+    <div class="col-1 ">
+        <input type="checkbox" class="check" id="checkChord1">   
+    </div>
+    <div class="col-1">
+        <input type="checkbox" class="check" id="checkChord2">
+    </div>
+    <div class="col-1">
+        <input type="checkbox" class="check" id="checkChord3">
+    </div>
+    <div class="col-1">
+        <input type="checkbox" class="check" id="checkChord4">
+    </div>
+    <div class="col-1">
+        <input type="checkbox" class="check" id="checkChord5">
+    </div>
+    <div class="col-1">
+        <input type="checkbox" class="check" id="checkChord6">
+    </div>
+    <div class="col-1">
+        <input type="checkbox" class="check" id="checkChord7">
+    </div>
+    <div class="col-1">
+        <input type="checkbox" class="check" id="checkChord8">
+    </div>
+    <div class="col-4">
+        <button class="buttonM m-1" (click)="muteChord()" [ngClass]="mute ? 'textRed': 'textWhite'">Mute</button>
+        <button class="buttonM m-1" (click)="chorusOnOff()" [ngClass]="chorusOn ? 'textRed': 'textWhite'">Chorus</button>
+        <button class="buttonM m-1" (click)="waveChange()" *ngIf="inst.oscillator.type == 'sawtooth'">Wave &#9706;</button>
+        <button class="buttonM m-1" (click)="waveChange()" *ngIf="inst.oscillator.type == 'square'">Wave &#9632;</button>
+        <button class="buttonM m-1" (click)="waveChange()" *ngIf="inst.oscillator.type == 'triangle'">Wave &#9650;</button>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-1 ">  
+        <div class="slidecontainer" >
+            <input type="range" class="slider" id="checkChord1Pitch"max="25" min="0"step="1" value="4" (mouseup)="resetChordPitch()">
+        </div>
+    </div>
+    <div class="col-1" >
+        <div class="slidecontainer">
+            <input type="range" class="slider" id="checkChord2Pitch"max="25" min="0"step="1" value="4" (mouseup)="resetChordPitch()">
+        </div>
+    </div>
+    <div class="col-1">
+        <div class="slidecontainer">
+            <input type="range" class="slider" id="checkChord3Pitch" max="25" min="0"step="1" value="4" (mouseup)="resetChordPitch()"> 
+        </div>
+    </div>
+    <div class="col-1">
+        <div class="slidecontainer">
+            <input type="range" class="slider" id="checkChord4Pitch"max="25" min="0"step="1" value="4" (mouseup)="resetChordPitch()"> 
+        </div>
+    </div>
+    <div class="col-1">
+        <div class="slidecontainer">
+            <input type="range" class="slider" id="checkChord5Pitch"max="25" min="0"step="1" value="4" (mouseup)="resetChordPitch()"> 
+        </div>
+    </div>
+    <div class="col-1">
+        <div class="slidecontainer">
+            <input type="range" class="slider" id="checkChord6Pitch"max="25" min="0"step="1" value="4" (mouseup)="resetChordPitch()">
+        </div>
+    </div>
+    <div class="col-1">
+        <div class="slidecontainer">
+            <input type="range" class="slider" id="checkChord7Pitch"max="25" min="0"step="1" value="4" (mouseup)="resetChordPitch()">
+        </div>
+    </div>
+    <div class="col-1">
+        <div class="slidecontainer">
+            <input type="range" class="slider" id="checkChord8Pitch"max="25" min="0"step="1" value="4" (mouseup)="resetChordPitch()">
+        </div>
+    </div>
+    <div class="col-2" style="font-size:1.5vw;">
+        
+    </div>
+    <div class="col-2">
+        <!--somthing -->
+    </div>
+</div>
+<div class="row mt-1">
+    <div class="col-3">
+        <input type="range" class="slider" id="Major/Minor"max="1" min="0"step="1" value="0" (mouseup)="majorMinorSwitch()" style="width: 25%;">
+        <label class="label" for="filterFreq">Major/Minor</label>
+    </div>
+    <div class="col-3">
+        <input type="range" class="slider" id="noteDelay"max="0.5" min="0"step="0.1" value="0" (mouseup)="noteDelayChange()" style="width: 25%" >
+        <label class="label" for="filterFreq">Note Delay</label>
+    </div>
+    <div class="col-3">
+        <input type="range" class="slider" id="changeDetune"max="48" min="0"step="1" value="0" (mouseup)="changeDetune()" style="width: 25%">
+        <label class="label" for="filterFreq">Detune</label>
+    </div>
+    <div class="col-3">
+        <input type="range" class="slider" id="delayFeedbackChord"max="1" min="0"step="0.01" value="0" (mouseup)="changeDelayAmt()" style="width: 25%">
+        <label class="label" for="delayInput">Delay Amt</label>
+    </div>
+</div>
