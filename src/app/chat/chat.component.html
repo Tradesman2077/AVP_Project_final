@@ -1,0 +1,84 @@
+<div class="row mt-3" >
+    <div class="col-12">
+        <h6 style="background-color: #d3d3d3;">Hat</h6>
+    </div>
+</div>
+<div class="row mt-3" >
+    <div class="col-1 ">
+        <input type="checkbox" class="check" id="chat1">   
+    </div>
+    <div class="col-1">
+        <input type="checkbox" class="check" id="chat2">
+    </div>
+    <div class="col-1">
+        <input type="checkbox" class="check" id="chat3">
+    </div>
+    <div class="col-1">
+        <input type="checkbox" class="check" id="chat4">
+    </div>
+    <div class="col-1">
+        <input type="checkbox" class="check" id="chat5">
+    </div>
+    <div class="col-1">
+        <input type="checkbox" class="check" id="chat6">
+    </div>
+    <div class="col-1">
+        <input type="checkbox" class="check" id="chat7">
+    </div>
+    <div class="col-1">
+        <input type="checkbox" class="check" id="chat8">
+    </div>
+    <div class="col-2">
+        <button class="buttonM m-1" (click)="muteHat()" [ngClass]="mute ? 'textRed': 'textWhite'">Mute</button>
+    </div>
+    <div class="col-2">
+        
+    </div>
+</div>
+<div class="row">
+    <div class="col-1 ">  
+        <div class="slidecontainer" >
+            <input type="range" class="slider" id="chat1Pitch"max="2.5" min="0.25" step="0.25" value="1" (mouseup)="changePlaybackRate('chat')">
+        </div>
+    </div>
+    <div class="col-1" >
+        <div class="slidecontainer">
+            <input type="range" class="slider" id="chat2Pitch"max="2.5" min="0.25"step="0.25" value="1" (mouseup)="changePlaybackRate('chat')">
+        </div>
+    </div>
+    <div class="col-1">
+        <div class="slidecontainer">
+            <input type="range" class="slider" id="chat3Pitch" max="2.5" min="0.25"step="0.25" value="1" (mouseup)="changePlaybackRate('chat')"> 
+        </div>
+    </div>
+    <div class="col-1">
+        <div class="slidecontainer">
+            <input type="range" class="slider" id="chat4Pitch"max="2.5" min="0.25"step="0.25" value="1" (mouseup)="changePlaybackRate('chat')"> 
+        </div>
+    </div>
+    <div class="col-1">
+        <div class="slidecontainer">
+            <input type="range" class="slider" id="chat5Pitch"max="2.5" min="0.25"step="0.25" value="1" (mouseup)="changePlaybackRate('chat')"> 
+        </div>
+    </div>
+    <div class="col-1">
+        <div class="slidecontainer">
+            <input type="range" class="slider" id="chat6Pitch"max="2.5" min="0.25"step="0.25" value="1" (mouseup)="changePlaybackRate('chat')">
+        </div>
+    </div>
+    <div class="col-1">
+        <div class="slidecontainer">
+            <input type="range" class="slider" id="chat7Pitch"max="2.5" min="0.25"step="0.25" value="1" (mouseup)="changePlaybackRate('chat')">
+        </div>
+    </div>
+    <div class="col-1">
+        <div class="slidecontainer">
+            <input type="range" class="slider" id="chat8Pitch"max="2.5" min="0.25"step="0.25" value="1" (mouseup)="changePlaybackRate('chat')">
+        </div>
+    </div>
+    <div class="col-4" style="font-size:1.5vw;">
+        <input type="range" class="slider" id="hatDouble"max="1" min="0"step="0.01" value="0"(mouseup)="changeHatDouble()" style="width: 25%">
+        <label class="label" for="attackNoise">Echo</label>
+    </div>
+
+</div>

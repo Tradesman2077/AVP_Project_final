@@ -7,16 +7,17 @@ import { SynthComponent } from './synth/synth.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { FormsModule } from '@angular/forms';
 import { SpinnersAngularModule } from 'spinners-angular';
-import { MixerComponent } from './synth/mixer/mixer.component';
-
-
+import { KickdrumComponent } from './kickdrum/kickdrum.component';
+import { ClapsnareComponent } from './clapsnare/clapsnare.component';
+import { ChatComponent } from './chat/chat.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     SynthComponent,
-    MixerComponent,
-    
+    KickdrumComponent,
+    ClapsnareComponent,
+    ChatComponent
   ],
   imports: [
     BrowserModule,

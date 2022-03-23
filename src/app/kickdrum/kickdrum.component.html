@@ -1,0 +1,84 @@
+<div class="row" >
+    <div class="col-12">
+        <h6 style="background-color: #d3d3d3;">Kick</h6>
+    </div>
+</div>
+<div class="row mt-3" >
+    <div class="col-1 ">
+        <input type="checkbox" class="check" id="kick1">   
+    </div>
+    <div class="col-1">
+        <input type="checkbox" class="check" id="kick2">
+    </div>
+    <div class="col-1">
+        <input type="checkbox" class="check" id="kick3">
+    </div>
+    <div class="col-1">
+        <input type="checkbox" class="check" id="kick4">
+    </div>
+    <div class="col-1">
+        <input type="checkbox" class="check" id="kick5">
+    </div>
+    <div class="col-1">
+        <input type="checkbox" class="check" id="kick6">
+    </div>
+    <div class="col-1">
+        <input type="checkbox" class="check" id="kick7">
+    </div>
+    <div class="col-1">
+        <input type="checkbox" class="check" id="kick8">
+    </div>
+    <div class="col-2">
+        <button class="buttonM m-1" (click)="muteKick()" [ngClass]="mute ? 'textRed': 'textWhite'">Mute</button>
+        
+    </div>
+    <div class="col-2">
+        <!--somthing -->
+    </div>
+</div>
+<div class="row">
+    <div class="col-1 ">  
+        <div class="slidecontainer" >
+            <input type="range" class="slider" id="kick1Pitch"max="2.5" min="0.25" step="0.25" value="1" (mouseup)="changePlaybackRate('kick')">
+        </div>
+    </div>
+    <div class="col-1" >
+        <div class="slidecontainer">
+            <input type="range" class="slider" id="kick2Pitch"max="2.5" min="0.25"step="0.25" value="1" (mouseup)="changePlaybackRate('kick')">
+        </div>
+    </div>
+    <div class="col-1">
+        <div class="slidecontainer">
+            <input type="range" class="slider" id="kick3Pitch" max="2.5" min="0.25"step="0.25" value="1" (mouseup)="changePlaybackRate('kick')"> 
+        </div>
+    </div>
+    <div class="col-1">
+        <div class="slidecontainer">
+            <input type="range" class="slider" id="kick4Pitch"max="2.5" min="0.25"step="0.25" value="1" (mouseup)="changePlaybackRate('kick')"> 
+        </div>
+    </div>
+    <div class="col-1">
+        <div class="slidecontainer">
+            <input type="range" class="slider" id="kick5Pitch"max="2.5" min="0.25"step="0.25" value="1" (mouseup)="changePlaybackRate('kick')"> 
+        </div>
+    </div>
+    <div class="col-1">
+        <div class="slidecontainer">
+            <input type="range" class="slider" id="kick6Pitch"max="2.5" min="0.25"step="0.25" value="1" (mouseup)="changePlaybackRate('kick')">
+        </div>
+    </div>
+    <div class="col-1">
+        <div class="slidecontainer">
+            <input type="range" class="slider" id="kick7Pitch"max="2.5" min="0.25"step="0.25" value="1" (mouseup)="changePlaybackRate('kick')">
+        </div>
+    </div>
+    <div class="col-1">
+        <div class="slidecontainer">
+            <input type="range" class="slider" id="kick8Pitch"max="2.5" min="0.25"step="0.25" value="1" (mouseup)="changePlaybackRate('kick')">
+        </div>
+    </div>
+    <div class="col-4" style="font-size:1.5vw;">
+
+    </div>
+
+</div>

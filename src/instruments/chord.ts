@@ -21,6 +21,7 @@ export class Chord {
 
     chords = ["A3","A#3", "B3","B#3", "C3", "C#3", "D3", "D#3", "E3", "F3","F#3", "G3","G#3",
     "A4", "A#4", "B4", "B#4", "C4", "C#4", "D4", "D#4", "E4", "F4", "F#4", "G4", "G#4"];
+    synthChecks = [1,2,3,4,5,6,7,8];
 
 
     constructor(){
@@ -75,6 +76,7 @@ export class Chord {
             }
         }
         this.chordLoop = new Tone.Pattern(this.chordSong, this.selectedChord).start(0);
+        
     }
 
     muteChord(){
@@ -154,6 +156,8 @@ export class Chord {
         }
         
     }
+    
+    
 
 
 }

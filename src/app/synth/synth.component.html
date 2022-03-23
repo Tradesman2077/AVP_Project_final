@@ -9,15 +9,16 @@
 
     <div class="row">
         <div class="col-2">
-            <h1 class="text m-1">DT-01//</h1>
+            <h1 class="text m-1">DT-01<em style="color: #aa0404;">//</em></h1>
         </div>
         <div class="col-2">
-            <div style="font-size:1.5vw; margin-top: 5px;">
+            <div style="font-size:2.5vw; margin-top: 5px;">
                 {{this.currentParamEdit}}
             </div>
         </div>
         <div class="col-2" style="margin-top: 1%;">
-            <sa-spinner-round styles='{"color": "#aa0404"}' *ngIf="isPlaying"></sa-spinner-round>
+            <!--<sa-spinner-round styles='{"color": "#aa0404"}' *ngIf="isPlaying"></sa-spinner-round>-->
+            <canvas id="mycanvas"></canvas>
         </div>
         <div class="col-2">
             <p style="font-size:1.5vw;">Master Vol</p>
@@ -29,14 +30,13 @@
         <div class="col-2">
             <p style="font-size:1.5vw;">BPM</p>
             <div class="slidecontainer2">
-                
                 <input type="range" class="slider" id="bpm" min="20" max="400" step="1" value="120"(mouseup)="changeBpm()" [(ngModel)]="masterBpm">
             </div> 
         </div>
         <div class="col-2">
-            <button class="buttonR m-1" (click)="play()" [ngClass]="isPlaying ? 'textGreen': 'textWhite'">Play</button>
+            <button class="buttonR m-1" id="playButton" (click)="play()" [ngClass]="isPlaying ? 'textGreen': 'textWhite'">Play</button>
             <button class="buttonR m-1" (click)="stop()"[ngClass]="isPlaying ? 'textRed': 'textWhite'">Stop</button>
-            <button class="buttonM m-1" (click)="unMute()">UnMute</button>
+            <button class="buttonM m-1" id="unmuteButton" (click)="unMute()">UnMute</button>
         </div>
     </div>
     <div class="row">
@@ -113,7 +113,7 @@
     <div class="row">
         <div class="col-1 ">  
             <div class="slidecontainer" >
-                <input type="range" class="slider" id="check1Pitch"max="1000" min="0"step="5" value="200" (mouseup)="resetSynthPitch()" (mouseup)="displayVal(synth1Pitch)" [(ngModel)]="synth1Pitch">
+                <input type="range" class="slider" id="check1Pitch"max="1000" min="0"step="5" value="200" (mouseup)="resetSynthPitch()" (mouseup)="displayVal(synthPitch)" [(ngModel)]="synthPitch">
             </div>
         </div>
         <div class="col-1" >
@@ -282,258 +282,9 @@
             <label class="label" for="delayInput">Delay Amt</label>
         </div>
     </div>
-    <div class="row" >
-        <div class="col-12">
-            <h6 style="background-color: #d3d3d3">Clap</h6>
-        </div>
-    </div>
-    <div class="row mt-3 mb-3" >
-        <div class="col-1 ">
-            <input type="checkbox" class="check" id="clap1">   
-        </div>
-        <div class="col-1">
-            <input type="checkbox" class="check" id="clap2">
-        </div>
-        <div class="col-1">
-            <input type="checkbox" class="check" id="clap3">
-        </div>
-        <div class="col-1">
-            <input type="checkbox" class="check" id="clap4">
-        </div>
-        <div class="col-1">
-            <input type="checkbox" class="check" id="clap5">
-        </div>
-        <div class="col-1">
-            <input type="checkbox" class="check" id="clap6">
-        </div>
-        <div class="col-1">
-            <input type="checkbox" class="check" id="clap7">
-        </div>
-        <div class="col-1">
-            <input type="checkbox" class="check" id="clap8">
-        </div>
-        <div class="col-4">
-            <button class="buttonM m-1" (click)="mute('clap')"[ngClass]="clap.mute ? 'textRed': 'textWhite'">Mute</button>
-            <button class="buttonM m-1" (click)="clap.reverbSwitch('clap')"[ngClass]="clap.reverbOn ? 'textRed': 'textWhite'">Reverb</button>
-        </div>
-        
-    </div>
-    <div class="row">
-        <div class="col-1 ">  
-            <div class="slidecontainer" >
-                <input type="range" class="slider" id="clap1Pitch"max="3" min="0.25" step="0.25" value="1" (mouseup)="changePlaybackRate('clap')">
-            </div>
-        </div>
-        <div class="col-1" >
-            <div class="slidecontainer">
-                <input type="range" class="slider" id="clap2Pitch"max="2.5" min="0.25"step="0.25" value="1" (mouseup)="changePlaybackRate('clap')">
-            </div>
-        </div>
-        <div class="col-1">
-            <div class="slidecontainer">
-                <input type="range" class="slider" id="clap3Pitch" max="2.5" min="0.25"step="0.25" value="1" (mouseup)="changePlaybackRate('clap')"> 
-            </div>
-        </div>
-        <div class="col-1">
-            <div class="slidecontainer">
-                <input type="range" class="slider" id="clap4Pitch"max="2.5" min="0.25"step="0.25" value="1" (mouseup)="changePlaybackRate('clap')"> 
-            </div>
-        </div>
-        <div class="col-1">
-            <div class="slidecontainer">
-                <input type="range" class="slider" id="clap5Pitch"max="2.5" min="0.25"step="0.25" value="1" (mouseup)="changePlaybackRate('clap')"> 
-            </div>
-        </div>
-        <div class="col-1">
-            <div class="slidecontainer">
-                <input type="range" class="slider" id="clap6Pitch"max="2.5" min="0.25"step="0.25" value="1" (mouseup)="changePlaybackRate('clap')">
-            </div>
-        </div>
-        <div class="col-1">
-            <div class="slidecontainer">
-                <input type="range" class="slider" id="clap7Pitch"max="2.5" min="0.25"step="0.25" value="1" (mouseup)="changePlaybackRate('clap')">
-            </div>
-        </div>
-        <div class="col-1">
-            <div class="slidecontainer">
-                <input type="range" class="slider" id="clap8Pitch"max="2.5" min="0.25"step="0.25" value="1" (mouseup)="changePlaybackRate('clap')">
-            </div>
-        </div>
-        <div class="col-4" style="font-size:1.5vw;">
-            <input type="range" class="slider" id="clap/snare"max="1" min="0"step="1" value="0"(mouseup)="clap.changeSample()" style="width: 25%">
-            <label class="label" for="attackNoise">Clap/Snare</label>
-        </div>
-
-    </div>
-    <div class="row" >
-        <div class="col-12">
-            <h6 style="background-color: #d3d3d3;">Kick</h6>
-        </div>
-    </div>
-    <div class="row mt-3" >
-        <div class="col-1 ">
-            <input type="checkbox" class="check" id="kick1">   
-        </div>
-        <div class="col-1">
-            <input type="checkbox" class="check" id="kick2">
-        </div>
-        <div class="col-1">
-            <input type="checkbox" class="check" id="kick3">
-        </div>
-        <div class="col-1">
-            <input type="checkbox" class="check" id="kick4">
-        </div>
-        <div class="col-1">
-            <input type="checkbox" class="check" id="kick5">
-        </div>
-        <div class="col-1">
-            <input type="checkbox" class="check" id="kick6">
-        </div>
-        <div class="col-1">
-            <input type="checkbox" class="check" id="kick7">
-        </div>
-        <div class="col-1">
-            <input type="checkbox" class="check" id="kick8">
-        </div>
-        <div class="col-2">
-            <button class="buttonM m-1" (click)="mute('kick')" [ngClass]="kick.mute ? 'textRed': 'textWhite'">Mute</button>
-            
-        </div>
-        <div class="col-2">
-            <!--somthing -->
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-1 ">  
-            <div class="slidecontainer" >
-                <input type="range" class="slider" id="kick1Pitch"max="2.5" min="0.25" step="0.25" value="1" (mouseup)="changePlaybackRate('kick')">
-            </div>
-        </div>
-        <div class="col-1" >
-            <div class="slidecontainer">
-                <input type="range" class="slider" id="kick2Pitch"max="2.5" min="0.25"step="0.25" value="1" (mouseup)="changePlaybackRate('kick')">
-            </div>
-        </div>
-        <div class="col-1">
-            <div class="slidecontainer">
-                <input type="range" class="slider" id="kick3Pitch" max="2.5" min="0.25"step="0.25" value="1" (mouseup)="changePlaybackRate('kick')"> 
-            </div>
-        </div>
-        <div class="col-1">
-            <div class="slidecontainer">
-                <input type="range" class="slider" id="kick4Pitch"max="2.5" min="0.25"step="0.25" value="1" (mouseup)="changePlaybackRate('kick')"> 
-            </div>
-        </div>
-        <div class="col-1">
-            <div class="slidecontainer">
-                <input type="range" class="slider" id="kick5Pitch"max="2.5" min="0.25"step="0.25" value="1" (mouseup)="changePlaybackRate('kick')"> 
-            </div>
-        </div>
-        <div class="col-1">
-            <div class="slidecontainer">
-                <input type="range" class="slider" id="kick6Pitch"max="2.5" min="0.25"step="0.25" value="1" (mouseup)="changePlaybackRate('kick')">
-            </div>
-        </div>
-        <div class="col-1">
-            <div class="slidecontainer">
-                <input type="range" class="slider" id="kick7Pitch"max="2.5" min="0.25"step="0.25" value="1" (mouseup)="changePlaybackRate('kick')">
-            </div>
-        </div>
-        <div class="col-1">
-            <div class="slidecontainer">
-                <input type="range" class="slider" id="kick8Pitch"max="2.5" min="0.25"step="0.25" value="1" (mouseup)="changePlaybackRate('kick')">
-            </div>
-        </div>
-        <div class="col-4" style="font-size:1.5vw;">
-
-        </div>
-
-    </div>
-    <div class="row mt-3" >
-        <div class="col-12">
-            <h6 style="background-color: #d3d3d3;">Hat</h6>
-        </div>
-    </div>
-    <div class="row mt-3" >
-        <div class="col-1 ">
-            <input type="checkbox" class="check" id="chat1">   
-        </div>
-        <div class="col-1">
-            <input type="checkbox" class="check" id="chat2">
-        </div>
-        <div class="col-1">
-            <input type="checkbox" class="check" id="chat3">
-        </div>
-        <div class="col-1">
-            <input type="checkbox" class="check" id="chat4">
-        </div>
-        <div class="col-1">
-            <input type="checkbox" class="check" id="chat5">
-        </div>
-        <div class="col-1">
-            <input type="checkbox" class="check" id="chat6">
-        </div>
-        <div class="col-1">
-            <input type="checkbox" class="check" id="chat7">
-        </div>
-        <div class="col-1">
-            <input type="checkbox" class="check" id="chat8">
-        </div>
-        <div class="col-2">
-            <button class="buttonM m-1" (click)="mute('chat')" [ngClass]="hat.mute ? 'textRed': 'textWhite'">Mute</button>
-            
-        </div>
-        <div class="col-2">
-            
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-1 ">  
-            <div class="slidecontainer" >
-                <input type="range" class="slider" id="chat1Pitch"max="2.5" min="0.25" step="0.25" value="1" (mouseup)="changePlaybackRate('chat')">
-            </div>
-        </div>
-        <div class="col-1" >
-            <div class="slidecontainer">
-                <input type="range" class="slider" id="chat2Pitch"max="2.5" min="0.25"step="0.25" value="1" (mouseup)="changePlaybackRate('chat')">
-            </div>
-        </div>
-        <div class="col-1">
-            <div class="slidecontainer">
-                <input type="range" class="slider" id="chat3Pitch" max="2.5" min="0.25"step="0.25" value="1" (mouseup)="changePlaybackRate('chat')"> 
-            </div>
-        </div>
-        <div class="col-1">
-            <div class="slidecontainer">
-                <input type="range" class="slider" id="chat4Pitch"max="2.5" min="0.25"step="0.25" value="1" (mouseup)="changePlaybackRate('chat')"> 
-            </div>
-        </div>
-        <div class="col-1">
-            <div class="slidecontainer">
-                <input type="range" class="slider" id="chat5Pitch"max="2.5" min="0.25"step="0.25" value="1" (mouseup)="changePlaybackRate('chat')"> 
-            </div>
-        </div>
-        <div class="col-1">
-            <div class="slidecontainer">
-                <input type="range" class="slider" id="chat6Pitch"max="2.5" min="0.25"step="0.25" value="1" (mouseup)="changePlaybackRate('chat')">
-            </div>
-        </div>
-        <div class="col-1">
-            <div class="slidecontainer">
-                <input type="range" class="slider" id="chat7Pitch"max="2.5" min="0.25"step="0.25" value="1" (mouseup)="changePlaybackRate('chat')">
-            </div>
-        </div>
-        <div class="col-1">
-            <div class="slidecontainer">
-                <input type="range" class="slider" id="chat8Pitch"max="2.5" min="0.25"step="0.25" value="1" (mouseup)="changePlaybackRate('chat')">
-            </div>
-        </div>
-        <div class="col-4" style="font-size:1.5vw;">
-            <input type="range" class="slider" id="hatDouble"max="1" min="0"step="0.01" value="0"(mouseup)="hat.changeHatDouble()" style="width: 25%">
-            <label class="label" for="attackNoise">Echo</label>
-        </div>
-
-    </div>
+    <app-clapsnare></app-clapsnare>
+    <app-kickdrum></app-kickdrum>
+    <app-chat></app-chat>
     <div class="row mt-3" >
         <div class="col-12">
             <h6 style="background-color: #d3d3d3;">Pluck</h6>
@@ -620,19 +371,19 @@
     </div>
     <div class="row mt-1">
         <div class="col-3">
-            <input type="range" class="slider" id="attackNoise"max="20" min="0.1"step="0.1" value="0" (mouseup)="changeAttackNoise()" style="width: 25%">
+            <input type="range" class="slider" id="attackNoise"max="20" min="0.1"step="0.1" value="0" (mouseup)="pluck.changeAttackNoise()" style="width: 25%">
             <label class="label" for="attackNoise">Attack Noise</label>
         </div>
         <div class="col-3">
-            <input type="range" class="slider" id="resonance"max="1" min="0"step="0.1" value="0" (mouseup)="changeResonance()" style="width: 25%">
+            <input type="range" class="slider" id="resonance"max="1" min="0"step="0.1" value="0" (mouseup)="pluck.changeResonance()" style="width: 25%">
             <label class="label" for="attackNoise">Resonance</label>
         </div>
         <div class="col-3">
-            <input type="range" class="slider" id="revWet"max="1" min="0"step="0.01" value="0"(mouseup)="changeRevWet()" style="width: 25%">
+            <input type="range" class="slider" id="revWet"max="1" min="0"step="0.01" value="0"(mouseup)="pluck.changeRevWet()" style="width: 25%">
             <label class="label" for="revWet">Reverb</label>
         </div>
         <div class="col-3">
-            <input type="range" class="slider" id="fold"max="100" min="0"step="1" value="0"(mouseup)="changeFold()" style="width: 25%">
+            <input type="range" class="slider" id="fold"max="100" min="0"step="1" value="0"(mouseup)="pluck.changeFold()" style="width: 25%">
             <label class="label" for="revWet">Fold</label>
         </div>
     </div>
@@ -719,7 +470,80 @@
             <label class="label" for="attackNoise">Release</label>
         </div>    
     </div>
-    <app-mixer></app-mixer>
+    <div class="row mt-3" >
+        <div class="col-12">
+            <h6 style="background-color: #d3d3d3;">Mixer</h6>
+        </div>
+    </div>
+    <div class="row mt-1">
+        <div class="col-1">
+            <div class="slidecontainer">
+                <input type="range" class="slider" id="synthVol"max="0" min="-100"step="1" value="-25" (mouseup)="mixer.changeVolume('synth')">
+            </div>
+        </div>
+        <div class="col-1">
+            <div class="slidecontainer">
+                <input type="range" class="slider" id="chordVol"max="0" min="-100"step="1" value="-25">
+            </div>
+        </div>
+        <div class="col-1">
+            <div class="slidecontainer">
+                <input type="range" class="slider" id="clapVol"max="0" min="-100"step="1" value="-25">
+            </div>
+        </div>
+        <div class="col-1">
+            <div class="slidecontainer">
+                <input type="range" class="slider" id="kickVol"max="0" min="-100"step="1" value="-25">
+            </div>
+        </div>
+        <div class="col-1">
+            <div class="slidecontainer">
+                <input type="range" class="slider" id="hatVol"max="0" min="-100"step="1" value="-25">
+            </div>
+        </div>
+        <div class="col-1">
+            <div class="slidecontainer">
+                <input type="range" class="slider" id="pluckVol"mmax="0" min="-100"step="1" value="-25">
+            </div>
+        </div>
+        <div class="col-1">
+            <div class="slidecontainer">
+                <input type="range" class="slider" id="bassVol"max="0" min="-100"step="1" value="-25">
+            </div>
+        </div>
+        <div class="col-1">
+            <div class="slidecontainer">
+                <input type="range" class="slider" id="sampVol"max="0" min="-100"step="1" value="-25" >
+            </div>
+        </div>
+    </div>
+    <div class="row mt-1">
+        <div class="col-1">
+            <label class="label" for="attackNoise">Synth</label>
+        </div>
+        <div class="col-1">
+            <label class="label" for="attackNoise">Chord</label>
+        </div>
+        <div class="col-1">
+            <label class="label" for="revWet">Clap</label>
+        </div>
+        <div class="col-1">
+            <label class="label" for="revWet">Kick</label>
+        </div>
+        <div class="col-1">
+            <label class="label" for="revWet">Hat</label>
+        </div>
+        <div class="col-1">
+            <label class="label" for="revWet">Pluck</label>
+        </div>
+        <div class="col-1">
+            <label class="label" for="revWet">Bass</label>
+        </div>
+        <div class="col-1">
+            <label class="label" for="revWet">Samp</label>
+        </div>
+    </div>
+  
 </div>
     
 
