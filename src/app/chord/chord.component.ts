@@ -69,13 +69,11 @@ export class ChordComponent implements OnInit {
                 this.inst.triggerAttackRelease(this.chords[trigger], '8n', time);
                 this.inst2.triggerAttackRelease(this.chords[note+3], '8n', time + this.noteDelay);
                 this.inst3.triggerAttackRelease(this.chords[note+7], '8n', time + this.noteDelay*2);
-                console.log(this.chords[trigger] );
               }
               else{
                 this.inst.triggerAttackRelease(this.chords[trigger], '8n', time);
                 this.inst2.triggerAttackRelease(this.chords[note+4], '8n', time + this.noteDelay);
                 this.inst3.triggerAttackRelease(this.chords[note+7], '8n', time + this.noteDelay*2);
-                console.log(this.chords[trigger] +"/"+this.chords[note+4]+"/"+this.chords[note+7] );
               }  
               
             }
@@ -182,6 +180,12 @@ export class ChordComponent implements OnInit {
         this.selectedChord[i] = pitchslider.value;
       }
     }
+  }
+  changeChordVol(){
+    let synthVolSlider = <HTMLInputElement>document.getElementById("chordVol");
+    this.inst.volume.value = synthVolSlider.value;
+    this.inst2.volume.value = synthVolSlider.value;
+    this.inst3.volume.value = synthVolSlider.value;
   }
 
   

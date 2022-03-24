@@ -1,19 +1,14 @@
 .container-flex  {font-family: 'Space Mono', monospace;
     padding-left: 2%;
-    
     background-color: rgb(253, 241, 226);
-    
   }
  canvas{
    width: 75%;
    height: 75%;
-
-   
  }
   .row{
     width: 100%;
   }
-
   .buttonR {
     font-size:2vw;
     text-align: center;

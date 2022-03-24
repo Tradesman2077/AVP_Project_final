@@ -30,7 +30,7 @@
         <div class="col-2">
             <p style="font-size:1.5vw;">BPM</p>
             <div class="slidecontainer2">
-                <input type="range" class="slider" id="bpm" min="20" max="400" step="1" value="120"(mouseup)="changeBpm()" [(ngModel)]="masterBpm">
+                <input type="range" class="slider" id="bpm" min="20" max="800" step="1" value="120"(mouseup)="changeBpm()" [(ngModel)]="masterBpm">
             </div> 
         </div>
         <div class="col-2">
@@ -101,7 +101,7 @@
             <input type="checkbox" class="check" id="check8">
         </div>
         <div class="col-4">
-            <button class="buttonM m-1" (click)="mute('synth')" [ngClass]="synthMute ? 'textRed': 'textWhite'">Mute</button>
+            <button class="buttonM m-1" (click)="mute('synth')" [ngClass]="synthMute ? 'textRed': 'textWhite'" >Mute</button>
 
             <button class="buttonM m-1" (click)="randomise()" >Random</button>
             <button class="buttonM m-1" (click)="waveChange()" *ngIf="monoSynth.oscillator.type == 'sawtooth'">Wave &#9706;</button>
@@ -151,13 +151,16 @@
                 <input type="range" class="slider" id="check8Pitch"max="1000" min="0"step="5" value="200" (mouseup)="resetSynthPitch()" (mouseup)="displayVal(synth8Pitch)" [(ngModel)]="synth8Pitch">
             </div>
         </div>
-        <div class="col-2" style="font-size:1.5vw;">
-            
+        <div class="col-2" >
+            <div class="slidecontainer">
+                <input type="range" class="slider" id="synthVol"max="10" min="-20"step="1" value="-10" (mouseup)="changeSynthVol()">
+            </div>
         </div>
         <div class="col-2">
-            <!--somthing -->
+            <label class="label">Vol</label>
         </div>
     </div>
+    <hr>
     <div class="row mt-1">
         <div class="col-3">
             <input type="range" class="slider" id="monoSynthFilterAttack"max="2" min="0"step="0.1" value="0.3" (mouseup)="changeFilterAttack()" style="width: 25%;" (mouseup)="displayVal(synthFilterAttack)">
@@ -178,167 +181,21 @@
     </div>
     
     <app-chord></app-chord>
+
+    <app-sampler></app-sampler>
+
     <app-clapsnare></app-clapsnare>
+
     <app-kickdrum></app-kickdrum>
+
     <app-chat></app-chat>
+
     <app-pluck></app-pluck>
 
-    <div class="row mt-3" >
-        <div class="col-12">
-            <h6 style="background-color: #d3d3d3;">Bass/Tom</h6>
-        </div>
-    </div>
-    <div class="row" >
-        <div class="col-1 ">
-            <input type="checkbox" class="check" id="checkSub1" >   
-        </div>
-        <div class="col-1">
-            <input type="checkbox" class="check" id="checkSub2">
-        </div>
-        <div class="col-1">
-            <input type="checkbox" class="check" id="checkSub3">
-        </div>
-        <div class="col-1">
-            <input type="checkbox" class="check" id="checkSub4">
-        </div>
-        <div class="col-1">
-            <input type="checkbox" class="check" id="checkSub5">
-        </div>
-        <div class="col-1">
-            <input type="checkbox" class="check" id="checkSub6">
-        </div>
-        <div class="col-1">
-            <input type="checkbox" class="check" id="checkSub7">
-        </div>
-        <div class="col-1">
-            <input type="checkbox" class="check" id="checkSub8">
-        </div>
-        <div class="col-4">
-            <button class="buttonM m-1" (click)="mute('sub')" [ngClass]="subMute ? 'textRed': 'textWhite'">Mute</button>
-            <button class="buttonM m-1" (click)="distort()" [ngClass]="isDist ? 'textRed': 'textWhite'">Distortion</button>
-        </div>
-
-    </div>
-
-    <div class="row">
-        <div class="col-1 ">  
-            <div class="slidecontainer" >
-                <input type="range" class="slider" id="checkSub1Pitch"max="400" min="10"step="5" value="32" (mouseup)="resetSubPitch()">
-            </div>
-        </div>
-        <div class="col-1" >
-            <div class="slidecontainer">
-                <input type="range" class="slider" id="checkSub2Pitch"max="400" min="10"step="5" value="32" (mouseup)="resetSubPitch()">
-            </div>
-        </div>
-        <div class="col-1">
-            <div class="slidecontainer">
-                <input type="range" class="slider" id="checkSub3Pitch" max="400" min="10"step="5" value="32" (mouseup)="resetSubPitch()"> 
-            </div>
-        </div>
-        <div class="col-1">
-            <div class="slidecontainer">
-                <input type="range" class="slider" id="checkSub4Pitch"max="400" min="10"step="5" value="32" (mouseup)="resetSubPitch()"> 
-            </div>
-        </div>
-        <div class="col-1">
-            <div class="slidecontainer">
-                <input type="range" class="slider" id="checkSub5Pitch"max="400" min="10"step="5" value="32" (mouseup)="resetSubPitch()"> 
-            </div>
-        </div>
-        <div class="col-1">
-            <div class="slidecontainer">
-                <input type="range" class="slider" id="checkSub6Pitch"max="400" min="10"step="5" value="32" (mouseup)="resetSubPitch()">
-            </div>
-        </div>
-        <div class="col-1">
-            <div class="slidecontainer">
-                <input type="range" class="slider" id="checkSub7Pitch"max="400" min="10"step="5" value="32" (mouseup)="resetSubPitch()">
-            </div>
-        </div>
-        <div class="col-1">
-            <div class="slidecontainer">
-                <input type="range" class="slider" id="checkSub8Pitch"max="400" min="10"step="5" value="32" (mouseup)="resetSubPitch()">
-            </div>
-        </div>
-        <div class="col-4" style="font-size:1.5vw;">
-            <input type="range" class="slider" id="subRelease"max="5" min="0"step="0.01" value="1"(mouseup)="changeSubRelease()" style="width: 25%">
-            <label class="label" for="attackNoise">Release</label>
-        </div>    
-    </div>
-    <div class="row mt-3" >
-        <div class="col-12">
-            <h6 style="background-color: #d3d3d3;">Mixer</h6>
-        </div>
-    </div>
-    <div class="row mt-1">
-        <div class="col-1">
-            <div class="slidecontainer">
-                <input type="range" class="slider" id="synthVol"max="0" min="-100"step="1" value="-25" (mouseup)="mixer.changeVolume('synth')">
-            </div>
-        </div>
-        <div class="col-1">
-            <div class="slidecontainer">
-                <input type="range" class="slider" id="chordVol"max="0" min="-100"step="1" value="-25">
-            </div>
-        </div>
-        <div class="col-1">
-            <div class="slidecontainer">
-                <input type="range" class="slider" id="clapVol"max="0" min="-100"step="1" value="-25">
-            </div>
-        </div>
-        <div class="col-1">
-            <div class="slidecontainer">
-                <input type="range" class="slider" id="kickVol"max="0" min="-100"step="1" value="-25">
-            </div>
-        </div>
-        <div class="col-1">
-            <div class="slidecontainer">
-                <input type="range" class="slider" id="hatVol"max="0" min="-100"step="1" value="-25">
-            </div>
-        </div>
-        <div class="col-1">
-            <div class="slidecontainer">
-                <input type="range" class="slider" id="pluckVol"mmax="0" min="-100"step="1" value="-25">
-            </div>
-        </div>
-        <div class="col-1">
-            <div class="slidecontainer">
-                <input type="range" class="slider" id="bassVol"max="0" min="-100"step="1" value="-25">
-            </div>
-        </div>
-        <div class="col-1">
-            <div class="slidecontainer">
-                <input type="range" class="slider" id="sampVol"max="0" min="-100"step="1" value="-25" >
-            </div>
-        </div>
-    </div>
-    <div class="row mt-1">
-        <div class="col-1">
-            <label class="label" for="attackNoise">Synth</label>
-        </div>
-        <div class="col-1">
-            <label class="label" for="attackNoise">Chord</label>
-        </div>
-        <div class="col-1">
-            <label class="label" for="revWet">Clap</label>
-        </div>
-        <div class="col-1">
-            <label class="label" for="revWet">Kick</label>
-        </div>
-        <div class="col-1">
-            <label class="label" for="revWet">Hat</label>
-        </div>
-        <div class="col-1">
-            <label class="label" for="revWet">Pluck</label>
-        </div>
-        <div class="col-1">
-            <label class="label" for="revWet">Bass</label>
-        </div>
-        <div class="col-1">
-            <label class="label" for="revWet">Samp</label>
-        </div>
-    </div>
+    <app-subtom></app-subtom>
+    
+    
+    
   
 </div>
     

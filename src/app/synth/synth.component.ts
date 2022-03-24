@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Chord } from 'src/instruments/chord';
-import { Pluck } from 'src/instruments/pluck';
+
 
 import * as Tone from 'tone';
 
@@ -12,8 +11,6 @@ import * as Tone from 'tone';
 export class SynthComponent implements OnInit {
   wave:any;
   loop:any;
-  isDist:any;
-  dist:any;
   time:any;
   currentBeat:any;
   currentBeatNum:any;
@@ -28,17 +25,10 @@ export class SynthComponent implements OnInit {
   bpm:any;
   mixer:any;
   selectedNotes:any
-  selectedPlucks:any
   synthChecks:any;
   beatCount:any;
-  sub:any;
-  selectedSub:any;
-  subSong:any;
-  subLoop:any;
   synthMute:any;
   synthVolWhenMuted:any;
-  subMute:any;
-  subVolWhenMuted:any;
   currentParamEdit:any;
   masterVol:any;
   masterBpm:any;
@@ -64,28 +54,15 @@ export class SynthComponent implements OnInit {
 
   constructor() {
     this.wave = new Tone.Waveform(512);
-    this.dist = new Tone.Distortion(0.8).toDestination();
     this.hpFilter = new Tone.Filter(500,'highpass');
 
     this.selectedNotes = [null, null, null, null, null, null, null, null]; //synth//
-    this.selectedSub = [null, null, null, null, null, null, null, null];
     this.synthChecks = [1,2,3,4,5,6,7,8];
     this.beatCount = 0;
-    this.isDist =false;
-    this.dist.oversample = "2x";
-    this.dist.distortion = 0;
     this.waveCounter = 1;
     Tone.Destination.connect(this.wave);
     Tone.Transport.bpm.value = 180;
 
-    //subSynth
-    this.sub = new Tone.MembraneSynth().toDestination();
-    this.sub.connect(this.dist);
-    this.subSong = (time:any, trigger:any) =>{
-      if(trigger!=null){
-        this.sub.triggerAttackRelease(trigger, '8n', time);
-      }
-    } 
     //pingPongDelay
     this.pingPong = new Tone.PingPongDelay('8n').toDestination();
     this.pingPong.wet.value = 0;
@@ -101,14 +78,11 @@ export class SynthComponent implements OnInit {
       }
       this.updateBeatOnUi();
       if(trigger!=null){
-        
         this.monoSynth.triggerAttackRelease(trigger, '16n', time);
       }
     }
     ///synthloop
     this.loop = new Tone.Pattern(this.song, this.selectedNotes ).start(0);
-    //subLoop
-    this.subLoop = new Tone.Pattern(this.subSong, this.selectedSub).start(0);
    }
 
   ngOnInit(): void {
@@ -129,18 +103,6 @@ export class SynthComponent implements OnInit {
       }
       });
     }
-    for(let i = 0; i < this.synthChecks.length; i++){
-      document.getElementById("checkSub"+this.synthChecks[i].toString())?.addEventListener("click", async () => {
-        if(this.selectedSub[i] != null){
-          this.selectedSub[i] = null;
-        }
-        else{
-          let pitchslider = <HTMLInputElement>document.getElementById("checkSub"+this.synthChecks[i].toString()+"Pitch");
-          this.selectedSub[i] = pitchslider.value;
-        }
-        });
-      }
- 
     // start/stop for transport on spacebar
     document.addEventListener('keyup', e => {
       if (e.code === 'Space') {
@@ -161,11 +123,9 @@ export class SynthComponent implements OnInit {
     Tone.start();
     Tone.Transport.start();
     this.loop.start(0);
-    this.subLoop.start(0);
   }
   stop(){
     this.loop.stop();
-    this.subLoop.stop();
     this.isPlaying = false;
     Tone.Transport.stop();
   }
@@ -182,15 +142,7 @@ export class SynthComponent implements OnInit {
       }
     }
   }
-  resetSubPitch(){
-    console.log(this.selectedSub);
-    for(let i = 0; i < this.synthChecks.length; i++){
-      let pitchslider = <HTMLInputElement>document.getElementById("checkSub"+this.synthChecks[i].toString()+"Pitch");
-      if(this.selectedSub[i]!=null){
-        this.selectedSub[i] = pitchslider.value;
-      }
-    }
-  }
+
   changeFilterAttack(){
     let slider = <HTMLInputElement>document.getElementById("monoSynthFilterAttack");
     let Afreq = parseFloat(slider.value);
@@ -215,11 +167,6 @@ export class SynthComponent implements OnInit {
     this.synthDelayVal = amt;
     this.pingPong.wet.value = amt;
   }
-  
-  changeSubRelease(){
-    let slider = <HTMLInputElement>document.getElementById("subRelease");
-    this.sub.envelope.decay = slider.value;
-  }
   ///mute switches method
   mute(part:any){
     if(part == 'synth' && this.synthMute == true){
@@ -231,22 +178,8 @@ export class SynthComponent implements OnInit {
       this.synthVolWhenMuted = this.monoSynth.volume.value;
       this.monoSynth.volume.value = -100;
     }
-    if(part == 'sub' && this.subMute == true){
-      this.subMute = false;
-      this.sub.volume.value = this.subVolWhenMuted;
-    }
-    else if(part == 'sub'){
-      this.subMute = true;
-      this.subVolWhenMuted = this.sub.volume.value;
-      this.sub.volume.value = -100;
-    }
   }
   unMute(){
-
-    if(this.subMute == true){
-      this.subMute = false;
-      this.sub.volume.value = this.subVolWhenMuted;
-    }
     if(this.synthMute == true){
       this.synthMute = false;
       this.monoSynth.volume.value = this.synthVolWhenMuted;
@@ -257,6 +190,10 @@ export class SynthComponent implements OnInit {
     Tone.Destination.volume.value = parseInt(volSlider.value);
     this.currentParamEdit = this.masterVol;
     console.log(this.currentParamEdit);
+  }
+  changeSynthVol(){
+    let synthVolSlider = <HTMLInputElement>document.getElementById("synthVol");
+    this.monoSynth.volume.value = synthVolSlider.value;
   }
   displayVal(val:any){
     this.currentParamEdit = val;
@@ -281,16 +218,7 @@ export class SynthComponent implements OnInit {
       }
     }
   }
-  distort(){
-    if(this.isDist){
-        this.dist.distortion = 0;
-        this.isDist = false;
-    }
-    else{
-        this.dist.distortion= 1;
-        this.isDist = true;
-    }
-  }
+  
   waveChange(){
     if(this.waveCounter == 2){
         this.waveCounter = 0;

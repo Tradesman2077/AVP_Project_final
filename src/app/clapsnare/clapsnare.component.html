@@ -1,4 +1,4 @@
-<div class="row" >
+<div class="row" style="margin-top: 1%;" >
     <div class="col-12">
         <h6 style="background-color: #d3d3d3">Clap</h6>
     </div>
@@ -28,9 +28,15 @@
     <div class="col-1">
         <input type="checkbox" class="check" id="clap8">
     </div>
-    <div class="col-4">
+    <div class="col-2" style="display: inline-flex;">
         <button class="buttonM m-1" (click)="muteClap()"[ngClass]="mute ? 'textRed': 'textWhite'">Mute</button>
         <button class="buttonM m-1" (click)="reverbSwitch()"[ngClass]="reverbOn ? 'textRed': 'textWhite'">Reverb</button>
+    </div>
+    <div class="col-1">
+        <input type="range" class="slider" id="clapVol"max="20" min="-50"step="1" value="0"  (mouseup)="changeClapVol()">
+    </div>
+    <div class="col-1">
+        <label class="label" for="chatVol">Vol</label>
     </div>
     
 </div>
@@ -75,9 +81,19 @@
             <input type="range" class="slider" id="clap8Pitch"max="2.5" min="0.25"step="0.25" value="1" (mouseup)="changePlaybackRate('clap')">
         </div>
     </div>
-    <div class="col-4" style="font-size:1.5vw;">
-        <input type="range" class="slider" id="clap/snare"max="1" min="0"step="1" value="0"(mouseup)="changeSample()" style="width: 25%">
-        <label class="label" for="attackNoise">Clap/Snare</label>
+    <div class="col-1">
+        <input type="range" class="slider" id="clap/snare"max="1" min="0"step="1" value="0"(mouseup)="changeSample()">
     </div>
+    <div class="col-1">
+        <label class="label" for="attackNoise">Clp/Sn</label>
+    </div>
+    <div class="col-1">
+        
+    </div>
+    <div class="col-1">
+        
+    </div>
+    
+    
 
 </div>

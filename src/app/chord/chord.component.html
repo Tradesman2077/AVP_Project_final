@@ -79,13 +79,16 @@
             <input type="range" class="slider" id="checkChord8Pitch"max="25" min="0"step="1" value="4" (mouseup)="resetChordPitch()">
         </div>
     </div>
-    <div class="col-2" style="font-size:1.5vw;">
-        
+    <div class="col-2" >
+        <div class="slidecontainer">
+            <input type="range" class="slider" id="chordVol"max="10" min="-100"step="1" value="-20" (mouseup)="changeChordVol()">
+        </div>
     </div>
     <div class="col-2">
-        <!--somthing -->
+        <label class="label">Vol</label>
     </div>
 </div>
+<hr>
 <div class="row mt-1">
     <div class="col-3">
         <input type="range" class="slider" id="Major/Minor"max="1" min="0"step="1" value="0" (mouseup)="majorMinorSwitch()" style="width: 25%;">

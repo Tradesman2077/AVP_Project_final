@@ -12,6 +12,8 @@ import { ClapsnareComponent } from './clapsnare/clapsnare.component';
 import { ChatComponent } from './chat/chat.component';
 import { PluckComponent } from './pluck/pluck.component';
 import { ChordComponent } from './chord/chord.component';
+import { SubtomComponent } from './subtom/subtom.component';
+import { SamplerComponent } from './sampler/sampler.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +23,9 @@ import { ChordComponent } from './chord/chord.component';
     ClapsnareComponent,
     ChatComponent,
     PluckComponent,
-    ChordComponent
+    ChordComponent,
+    SubtomComponent,
+    SamplerComponent
   ],
   imports: [
     BrowserModule,

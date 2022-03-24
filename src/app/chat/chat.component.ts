@@ -87,5 +87,9 @@ export class ChatComponent implements OnInit {
       }
     }
   }
+  changeChatVol(){
+    let chatVolSlider = <HTMLInputElement>document.getElementById("chatVol");
+    this.inst.volume.value = chatVolSlider.value;
+  }
 
 }

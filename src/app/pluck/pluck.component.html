@@ -32,8 +32,11 @@
         <button class="buttonM m-1" (click)="mutePluck()" [ngClass]="mute ? 'textRed': 'textWhite'">Mute</button>
         
     </div>
-    <div class="col-2">
-        <!--somthing -->
+    <div class="col-1">
+        <input type="range" class="slider" id="pluckVol"max="10" min="-100"step="1" value="-20" (mouseup)="changePluckVol()">
+    </div>
+    <div class="col-1">
+        <label class="label">Vol</label>
     </div>
 </div>
 

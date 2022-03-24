@@ -31,10 +31,14 @@
     <div class="col-2">
         <button class="buttonM m-1" (click)="muteHat()" [ngClass]="mute ? 'textRed': 'textWhite'">Mute</button>
     </div>
-    <div class="col-2">
-        
+    <div class="col-1">
+        <input type="range" class="slider" id="chatVol"max="20" min="-50"step="1" value="0"  (mouseup)="changeChatVol()">
     </div>
+    <div class="col-1">
+        <label class="label" for="chatVol">Vol</label>
+    </div>  
 </div>
+
 <div class="row">
     <div class="col-1 ">  
         <div class="slidecontainer" >
@@ -76,9 +80,11 @@
             <input type="range" class="slider" id="chat8Pitch"max="2.5" min="0.25"step="0.25" value="1" (mouseup)="changePlaybackRate('chat')">
         </div>
     </div>
-    <div class="col-4" style="font-size:1.5vw;">
-        <input type="range" class="slider" id="hatDouble"max="1" min="0"step="0.01" value="0"(mouseup)="changeHatDouble()" style="width: 25%">
+    <div class="col-1">
+        <input type="range" class="slider" id="hatDouble"max="1" min="0"step="0.01" value="0"(mouseup)="changeHatDouble()">
+        
+    </div>
+    <div class="col-1">
         <label class="label" for="attackNoise">Echo</label>
     </div>
-
 </div>

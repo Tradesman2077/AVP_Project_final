@@ -99,4 +99,8 @@ export class ClapsnareComponent implements OnInit {
         this.reverb.wet.value = 0;
     }
   }
+  changeClapVol(){
+    let clapVolSlider = <HTMLInputElement>document.getElementById("clapVol");
+    this.inst.volume.value = clapVolSlider.value;
+  }
 }

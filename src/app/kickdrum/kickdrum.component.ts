@@ -72,4 +72,8 @@ export class KickdrumComponent implements OnInit {
       }
     }
   }
+  changeKickVol(){
+    let kickVolSlider = <HTMLInputElement>document.getElementById("kickVol");
+    this.inst.volume.value = kickVolSlider.value;
+  }
 }
