@@ -1,13 +1,4 @@
 
-<!-- <div class="row">
-    <div class="col-6">
-        <input type="file" id="upload" class="file-upload"  (change)="upload($event)">
-    </div>
-    <div class="col-6">
-        <button (click)="playSample()">PLay</button>
-    </div>
-    
-</div> -->
 <div class="row" >
     <div class="col-12">
         <h6 style="background-color: #d3d3d3;">Sampler</h6>
@@ -40,7 +31,7 @@
     </div>
     <div class="col-2">
         <button class="buttonM m-1" (click)="muteSample()" [ngClass]="mute ? 'textRed': 'textWhite'">Mute</button>
-        
+        <button class="buttonM m-1" (click)="reverseSample()" [ngClass]="reverse ? 'textRed': 'textWhite'">Reverse</button>
     </div>
     <div class="col-1">
         <input type="range" class="slider" id="sampleVol"max="20" min="-50"step="1" value="0"  (mouseup)="changeSampleVol()">
@@ -105,8 +96,11 @@
         <button class="buttonM m-1" (click)="playSample()">Preview</button>
     </div>
     <div class="col-3">
-        
+        <input type="range" class="slider" id="sampleStart"max="10" min="0"step="0.001" value="0"(mouseup)="sampleStart()" style="width: 50%">
+        <label class="label" for="sampleStart">Start</label>
     </div>
     <div class="col-3">
+        <input type="range" class="slider" id="sampleEnd"max="10" min="0"step="0.001" value="5"(mouseup)="sampleEnd()" style="width: 50%">
+        <label class="label" for="sampleEnd">End</label>
     </div>
 </div>

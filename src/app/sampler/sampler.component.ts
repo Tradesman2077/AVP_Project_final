@@ -21,17 +21,23 @@ export class SamplerComponent implements OnInit {
   synthChecks = [1,2,3,4,5,6,7,8];
   unmuteButton:any;
   selectedSamples:any;
+  startPoint:any;
+  endPoint:any;
+  reverse:any;
 
   constructor() { 
     this.inst = new Tone.Player(this.sample).toDestination();
     this.mute = false;
+    this.startPoint = 0;
+    this.reverse = false;
+    
     this.sampleVolWhenMuted = 0;
     this.selectedSamples = [null, null, null, null, null, null, null, null];
     this.sampleSong = (time:any, trigger:any) =>{
         if(trigger!=null){
           this.inst.playbackRate = trigger;
           if(this.inst.loaded){
-            this.inst.start(time);
+            this.inst.start(time, this.startPoint, this.endPoint);
           }
         }
     }
@@ -62,11 +68,12 @@ export class SamplerComponent implements OnInit {
     this.blob = new Blob([this.sample], {type : 'audio/wav'});
     this.url = URL.createObjectURL(this.blob);
     this.inst.load(this.url);
+    //this.inst.loop = true;
   }
   playSample(){
     
     if(this.inst.loaded){
-      this.inst.start(0);
+      this.inst.start(0, this.startPoint, this.endPoint);
     }
   }
   muteSample(){
@@ -98,6 +105,24 @@ export class SamplerComponent implements OnInit {
   changeSampleVol(){
     let sampleVolSlider = <HTMLInputElement>document.getElementById("sampleVol");
     this.inst.volume.value = sampleVolSlider.value;
+  }
+  sampleStart(){
+    let sampleStartSlider = <HTMLInputElement>document.getElementById("sampleStart");
+    this.startPoint = sampleStartSlider.value;
+  }
+  sampleEnd(){
+    let sampleEndSlider = <HTMLInputElement>document.getElementById("sampleEnd");
+    this.endPoint = sampleEndSlider.value;
+  }
+  reverseSample(){
+    if(this.reverse){
+      this.reverse = false;
+      this.inst.reverse = false;
+    }
+    else{
+      this.reverse = true;
+      this.inst.reverse = true;
+    }
   }
 
 
