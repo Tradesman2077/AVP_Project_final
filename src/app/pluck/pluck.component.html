@@ -33,7 +33,7 @@
         
     </div>
     <div class="col-1">
-        <input type="range" class="slider" id="pluckVol"max="10" min="-100"step="1" value="-20" (mouseup)="changePluckVol()">
+        <input type="range" class="slider" id="pluckVol"max="10" min="-100"step="1" value="-20" (mouseup)="changePluckVol()" (touchend)="changePluckVol()">
     </div>
     <div class="col-1">
         <label class="label">Vol</label>
@@ -43,42 +43,42 @@
 <div class="row">
     <div class="col-1 ">  
         <div class="slidecontainer" >
-            <input type="range" class="slider" id="checkPluck1Pitch"max="1000" min="5"step="5" value="600" (mouseup)="resetPluckPitch()">
+            <input type="range" class="slider" id="checkPluck1Pitch"max="1000" min="5"step="5" value="600" (mouseup)="resetPluckPitch()"(touchend)="resetPluckPitch()">
         </div>
     </div>
     <div class="col-1" >
         <div class="slidecontainer">
-            <input type="range" class="slider" id="checkPluck2Pitch"max="1000" min="5"step="5" value="600" (mouseup)="resetPluckPitch()">
+            <input type="range" class="slider" id="checkPluck2Pitch"max="1000" min="5"step="5" value="600" (mouseup)="resetPluckPitch()"(touchend)="resetPluckPitch()">
         </div>
     </div>
     <div class="col-1">
         <div class="slidecontainer">
-            <input type="range" class="slider" id="checkPluck3Pitch" max="1000" min="5"step="5" value="600"  (mouseup)="resetPluckPitch()"> 
+            <input type="range" class="slider" id="checkPluck3Pitch" max="1000" min="5"step="5" value="600"  (mouseup)="resetPluckPitch()"(touchend)="resetPluckPitch()"> 
         </div>
     </div>
     <div class="col-1">
         <div class="slidecontainer">
-            <input type="range" class="slider" id="checkPluck4Pitch"max="1000" min="5"step="5" value="600" (mouseup)="resetPluckPitch()"> 
+            <input type="range" class="slider" id="checkPluck4Pitch"max="1000" min="5"step="5" value="600" (mouseup)="resetPluckPitch()"(touchend)="resetPluckPitch()"> 
         </div>
     </div>
     <div class="col-1">
         <div class="slidecontainer">
-            <input type="range" class="slider" id="checkPluck5Pitch"max="1000" min="5"step="5" value="600" (mouseup)="resetPluckPitch()"> 
+            <input type="range" class="slider" id="checkPluck5Pitch"max="1000" min="5"step="5" value="600" (mouseup)="resetPluckPitch()"(touchend)="resetPluckPitch()"> 
         </div>
     </div>
     <div class="col-1">
         <div class="slidecontainer">
-            <input type="range" class="slider" id="checkPluck6Pitch"max="1000" min="5"step="5" value="600" (mouseup)="resetPluckPitch()">
+            <input type="range" class="slider" id="checkPluck6Pitch"max="1000" min="5"step="5" value="600" (mouseup)="resetPluckPitch()"(touchend)="resetPluckPitch()">
         </div>
     </div>
     <div class="col-1">
         <div class="slidecontainer">
-            <input type="range" class="slider" id="checkPluck7Pitch"max="1000" min="5"step="5" value="600" (mouseup)="resetPluckPitch()">
+            <input type="range" class="slider" id="checkPluck7Pitch"max="1000" min="5"step="5" value="600" (mouseup)="resetPluckPitch()"(touchend)="resetPluckPitch()">
         </div>
     </div>
     <div class="col-1">
         <div class="slidecontainer">
-            <input type="range" class="slider" id="checkPluck8Pitch"max="1000" min="5"step="5" value="600" (mouseup)="resetPluckPitch()">
+            <input type="range" class="slider" id="checkPluck8Pitch"max="1000" min="5"step="5" value="600" (mouseup)="resetPluckPitch()" (touchend)="resetPluckPitch()">
         </div>
     </div>
     <div class="col-4" style="font-size:1.5vw;">
@@ -87,19 +87,19 @@
 </div>
 <div class="row mt-1">
     <div class="col-3">
-        <input type="range" class="slider" id="attackNoise"max="20" min="0.1"step="0.1" value="0" (mouseup)="changeAttackNoise()" style="width: 25%">
+        <input type="range" class="slider" id="attackNoise"max="20" min="0.1"step="0.1" value="0" (mouseup)="changeAttackNoise()" (touchend)="changeAttackNoise()" style="width: 25%">
         <label class="label" for="attackNoise">Attack Noise</label>
     </div>
     <div class="col-3">
-        <input type="range" class="slider" id="resonance"max="1" min="0"step="0.1" value="0" (mouseup)="changeResonance()" style="width: 25%">
+        <input type="range" class="slider" id="resonance"max="1" min="0"step="0.1" value="0" (mouseup)="changeResonance()" (touchend)="changeResonance()" style="width: 25%">
         <label class="label" for="attackNoise">Resonance</label>
     </div>
     <div class="col-3">
-        <input type="range" class="slider" id="revWet"max="1" min="0"step="0.01" value="0"(mouseup)="changeRevWet()" style="width: 25%">
+        <input type="range" class="slider" id="revWet"max="1" min="0"step="0.01" value="0"(mouseup)="changeRevWet()" (touchend)="changeRevWet()" style="width: 25%">
         <label class="label" for="revWet">Reverb</label>
     </div>
     <div class="col-3">
-        <input type="range" class="slider" id="fold"max="100" min="0"step="1" value="0"(mouseup)="changeFold()" style="width: 25%">
+        <input type="range" class="slider" id="fold"max="100" min="0"step="1" value="0"(mouseup)="changeFold()" (touchend)="changeFold()" style="width: 25%">
         <label class="label" for="revWet">Fold</label>
     </div>
 </div>

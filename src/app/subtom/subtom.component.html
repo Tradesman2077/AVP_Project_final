@@ -33,7 +33,7 @@
         <button class="buttonM m-1" (click)="distort()" [ngClass]="isDist ? 'textRed': 'textWhite'">Distortion</button>
     </div>
     <div class="col-1">
-        <input type="range" class="slider" id="subVol"max="20" min="-50"step="1" value="0"  (mouseup)="changeSubVol()">
+        <input type="range" class="slider" id="subVol"max="20" min="-50"step="1" value="0"  (mouseup)="changeSubVol()" (touchend)="changeSubVol()">
     </div>
     <div class="col-1">
         <label class="label" for="subVol">Vol</label>
@@ -45,46 +45,46 @@
 <div class="row">
     <div class="col-1 ">  
         <div class="slidecontainer" >
-            <input type="range" class="slider" id="checkSub1Pitch"max="400" min="10"step="5" value="32" (mouseup)="resetSubPitch()">
+            <input type="range" class="slider" id="checkSub1Pitch"max="400" min="10"step="5" value="32" (mouseup)="resetSubPitch()" (touchend)="resetSubPitch()">
         </div>
     </div>
     <div class="col-1" >
         <div class="slidecontainer">
-            <input type="range" class="slider" id="checkSub2Pitch"max="400" min="10"step="5" value="32" (mouseup)="resetSubPitch()">
+            <input type="range" class="slider" id="checkSub2Pitch"max="400" min="10"step="5" value="32" (mouseup)="resetSubPitch()"(touchend)="resetSubPitch()">
         </div>
     </div>
     <div class="col-1">
         <div class="slidecontainer">
-            <input type="range" class="slider" id="checkSub3Pitch" max="400" min="10"step="5" value="32" (mouseup)="resetSubPitch()"> 
+            <input type="range" class="slider" id="checkSub3Pitch" max="400" min="10"step="5" value="32" (mouseup)="resetSubPitch()"(touchend)="resetSubPitch()"> 
         </div>
     </div>
     <div class="col-1">
         <div class="slidecontainer">
-            <input type="range" class="slider" id="checkSub4Pitch"max="400" min="10"step="5" value="32" (mouseup)="resetSubPitch()"> 
+            <input type="range" class="slider" id="checkSub4Pitch"max="400" min="10"step="5" value="32" (mouseup)="resetSubPitch()"(touchend)="resetSubPitch()"> 
         </div>
     </div>
     <div class="col-1">
         <div class="slidecontainer">
-            <input type="range" class="slider" id="checkSub5Pitch"max="400" min="10"step="5" value="32" (mouseup)="resetSubPitch()"> 
+            <input type="range" class="slider" id="checkSub5Pitch"max="400" min="10"step="5" value="32" (mouseup)="resetSubPitch()"(touchend)="resetSubPitch()"> 
         </div>
     </div>
     <div class="col-1">
         <div class="slidecontainer">
-            <input type="range" class="slider" id="checkSub6Pitch"max="400" min="10"step="5" value="32" (mouseup)="resetSubPitch()">
+            <input type="range" class="slider" id="checkSub6Pitch"max="400" min="10"step="5" value="32" (mouseup)="resetSubPitch()"(touchend)="resetSubPitch()">
         </div>
     </div>
     <div class="col-1">
         <div class="slidecontainer">
-            <input type="range" class="slider" id="checkSub7Pitch"max="400" min="10"step="5" value="32" (mouseup)="resetSubPitch()">
+            <input type="range" class="slider" id="checkSub7Pitch"max="400" min="10"step="5" value="32" (mouseup)="resetSubPitch()"(touchend)="resetSubPitch()">
         </div>
     </div>
     <div class="col-1">
         <div class="slidecontainer">
-            <input type="range" class="slider" id="checkSub8Pitch"max="400" min="10"step="5" value="32" (mouseup)="resetSubPitch()">
+            <input type="range" class="slider" id="checkSub8Pitch"max="400" min="10"step="5" value="32" (mouseup)="resetSubPitch()"(touchend)="resetSubPitch()">
         </div>
     </div>
     <div class="col-4" style="font-size:1.5vw;">
-        <input type="range" class="slider" id="subRelease"max="5" min="0"step="0.01" value="1"(mouseup)="changeSubRelease()" style="width: 25%">
+        <input type="range" class="slider" id="subRelease"max="5" min="0"step="0.01" value="1"(mouseup)="changeSubRelease()" (touchend)="changeSubRelease()" style="width: 25%">
         <label class="label" for="attackNoise">Release</label>
     </div>    
 </div>

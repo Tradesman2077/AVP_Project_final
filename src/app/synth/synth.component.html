@@ -23,14 +23,14 @@
         <div class="col-2">
             <p style="font-size:1.5vw;">Master Vol</p>
             <div class="slidecontainer2">
-                <input type="range" class="slider" id="vol" min="-30" max="20" step="1" value="0"  (touchend)="changeVol()"  [(ngModel)]="masterVol">
+                <input type="range" class="slider" id="vol" min="-30" max="20" step="1" value="0"  (touchend)="changeVol()" (mouseup)="changeVol()" [(ngModel)]="masterVol">
             </div>
         </div>
        
         <div class="col-2">
             <p style="font-size:1.5vw;">BPM</p>
             <div class="slidecontainer2">
-                <input type="range" class="slider" id="bpm" min="20" max="800" step="1" value="120"(mouseup)="changeBpm()" [(ngModel)]="masterBpm">
+                <input type="range" class="slider" id="bpm" min="20" max="800" step="1" value="120" (touchend)="changeBpm()" (mouseup)="changeBpm()" [(ngModel)]="masterBpm">
             </div> 
         </div>
         <div class="col-2">
@@ -113,47 +113,47 @@
     <div class="row">
         <div class="col-1 ">  
             <div class="slidecontainer" >
-                <input type="range" class="slider" id="check1Pitch"max="1000" min="0"step="5" value="200" (mouseup)="resetSynthPitch()" (mouseup)="displayVal(synthPitch)" [(ngModel)]="synthPitch">
+                <input type="range" class="slider" id="check1Pitch"max="1000" min="0"step="5" value="200" (mouseup)="resetSynthPitch()" (mouseup)="displayVal(synthPitch)" (touchend)="resetSynthPitch()" (touchend)="displayVal(synthPitch)" [(ngModel)]="synthPitch">
             </div>
         </div>
         <div class="col-1" >
             <div class="slidecontainer">
-                <input type="range" class="slider" id="check2Pitch"max="1000" min="0"step="5" value="200" (mouseup)="resetSynthPitch()" (mouseup)="displayVal(synth2Pitch)" [(ngModel)]="synth2Pitch">
+                <input type="range" class="slider" id="check2Pitch"max="1000" min="0"step="5" value="200" (mouseup)="resetSynthPitch()" (mouseup)="displayVal(synth2Pitch)" (touchend)="resetSynthPitch()" (touchend)="displayVal(synthPitch)"  [(ngModel)]="synth2Pitch">
             </div>
         </div>
         <div class="col-1">
             <div class="slidecontainer">
-                <input type="range" class="slider" id="check3Pitch" max="1000" min="0"step="5" value="200" (mouseup)="resetSynthPitch()" (mouseup)="displayVal(synth3Pitch)" [(ngModel)]="synth3Pitch"> 
+                <input type="range" class="slider" id="check3Pitch" max="1000" min="0"step="5" value="200" (mouseup)="resetSynthPitch()" (mouseup)="displayVal(synth3Pitch)" (touchend)="resetSynthPitch()" (touchend)="displayVal(synthPitch)"  [(ngModel)]="synth3Pitch"> 
             </div>
         </div>
         <div class="col-1">
             <div class="slidecontainer">
-                <input type="range" class="slider" id="check4Pitch"max="1000" min="0"step="5" value="200" (mouseup)="resetSynthPitch()" (mouseup)="displayVal(synth4Pitch)" [(ngModel)]="synth4Pitch"> 
+                <input type="range" class="slider" id="check4Pitch"max="1000" min="0"step="5" value="200" (mouseup)="resetSynthPitch()" (mouseup)="displayVal(synth4Pitch)" (touchend)="resetSynthPitch()" (touchend)="displayVal(synthPitch)"  [(ngModel)]="synth4Pitch"> 
             </div>
         </div>
         <div class="col-1">
             <div class="slidecontainer">
-                <input type="range" class="slider" id="check5Pitch"max="1000" min="0"step="5" value="200" (mouseup)="resetSynthPitch()" (mouseup)="displayVal(synth5Pitch)" [(ngModel)]="synth5Pitch"> 
+                <input type="range" class="slider" id="check5Pitch"max="1000" min="0"step="5" value="200" (mouseup)="resetSynthPitch()" (mouseup)="displayVal(synth5Pitch)" (touchend)="resetSynthPitch()" (touchend)="displayVal(synthPitch)"  [(ngModel)]="synth5Pitch"> 
             </div>
         </div>
         <div class="col-1">
             <div class="slidecontainer">
-                <input type="range" class="slider" id="check6Pitch"max="1000" min="0"step="5" value="200" (mouseup)="resetSynthPitch()" (mouseup)="displayVal(synth6Pitch)" [(ngModel)]="synth6Pitch">
+                <input type="range" class="slider" id="check6Pitch"max="1000" min="0"step="5" value="200" (mouseup)="resetSynthPitch()" (mouseup)="displayVal(synth6Pitch)" (touchend)="resetSynthPitch()" (touchend)="displayVal(synthPitch)"  [(ngModel)]="synth6Pitch">
             </div>
         </div>
         <div class="col-1">
             <div class="slidecontainer">
-                <input type="range" class="slider" id="check7Pitch"max="1000" min="0"step="5" value="200" (mouseup)="resetSynthPitch()" (mouseup)="displayVal(synth7Pitch)" [(ngModel)]="synth7Pitch">
+                <input type="range" class="slider" id="check7Pitch"max="1000" min="0"step="5" value="200" (mouseup)="resetSynthPitch()" (mouseup)="displayVal(synth7Pitch)" (touchend)="resetSynthPitch()" (touchend)="displayVal(synthPitch)"  [(ngModel)]="synth7Pitch">
             </div>
         </div>
         <div class="col-1">
             <div class="slidecontainer">
-                <input type="range" class="slider" id="check8Pitch"max="1000" min="0"step="5" value="200" (mouseup)="resetSynthPitch()" (mouseup)="displayVal(synth8Pitch)" [(ngModel)]="synth8Pitch">
+                <input type="range" class="slider" id="check8Pitch"max="1000" min="0"step="5" value="200" (mouseup)="resetSynthPitch()" (mouseup)="displayVal(synth8Pitch)" (touchend)="resetSynthPitch()" (touchend)="displayVal(synthPitch)"  [(ngModel)]="synth8Pitch">
             </div>
         </div>
         <div class="col-2" >
             <div class="slidecontainer">
-                <input type="range" class="slider" id="synthVol"max="10" min="-20"step="1" value="-10" (mouseup)="changeSynthVol()">
+                <input type="range" class="slider" id="synthVol"max="10" min="-20"step="1" value="-10" (mouseup)="changeSynthVol()" (touchend)="changeSynthVol()">
             </div>
         </div>
         <div class="col-2">
@@ -163,19 +163,19 @@
     <hr>
     <div class="row mt-1">
         <div class="col-3">
-            <input type="range" class="slider" id="monoSynthFilterAttack"max="2" min="0"step="0.1" value="0.3" (mouseup)="changeFilterAttack()" style="width: 25%;" (mouseup)="displayVal(synthFilterAttack)">
+            <input type="range" class="slider" id="monoSynthFilterAttack"max="2" min="0"step="0.1" value="0.3" (mouseup)="changeFilterAttack()" (touchend)="changeFilterAttack()" style="width: 25%;" (mouseup)="displayVal(synthFilterAttack)">
             <label class="label" for="filterFreq">Filter Attack</label>
         </div>
         <div class="col-3">
-            <input type="range" class="slider" id="monoSynthFilterDecay"max="5" min="0"step="0.1" value="1" (mouseup)="changeFilterDecay()" style="width: 25%" (mouseup)="displayVal(synthFilterDecay)">
+            <input type="range" class="slider" id="monoSynthFilterDecay"max="5" min="0"step="0.1" value="1" (mouseup)="changeFilterDecay()" (touchend)="changeFilterDecay()" style="width: 25%" (mouseup)="displayVal(synthFilterDecay)">
             <label class="label" for="filterFreq">Amp Release</label>
         </div>
         <div class="col-3">
-            <input type="range" class="slider" id="monoSynthFilterBase"max="2000" min="0"step="10" value="200" (mouseup)="changeFilterBase()" style="width: 25%" (mouseup)="displayVal(synthFilterBase)">
+            <input type="range" class="slider" id="monoSynthFilterBase"max="2000" min="0"step="10" value="200" (mouseup)="changeFilterBase()" (touchend)="changeFilterBase()" style="width: 25%" (mouseup)="displayVal(synthFilterBase)">
             <label class="label" for="filterFreq">Filter env</label>
         </div>
         <div class="col-3">
-            <input type="range" class="slider" id="delayFeedback"max="1" min="0"step="0.01" value="0" (mouseup)="changeDelayAmt()" style="width: 25%" (mouseup)="displayVal(synthDelayVal)">
+            <input type="range" class="slider" id="delayFeedback"max="1" min="0"step="0.01" value="0" (mouseup)="changeDelayAmt()" (touchend)="changeDelayAmt()" style="width: 25%" (mouseup)="displayVal(synthDelayVal)">
             <label class="label" for="delayInput">Delay Amt</label>
         </div>
     </div>
