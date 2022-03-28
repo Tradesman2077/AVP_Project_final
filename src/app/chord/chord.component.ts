@@ -9,6 +9,7 @@ export class ChordComponent implements OnInit {
     inst:any;
     inst2:any;
     inst3:any;
+    inst4:any;
     mute:any;
     selectedChord:any;
     chordVolWhenMuted:any;
@@ -24,9 +25,11 @@ export class ChordComponent implements OnInit {
     waveCounter:any;
     delay:any;
     unmuteButton:any;
+    seventh:any;
 
-    chords = ["A3","A#3", "B3","B#3", "C3", "C#3", "D3", "D#3", "E3", "F3","F#3", "G3","G#3",
-    "A4", "A#4", "B4", "B#4", "C4", "C#4", "D4", "D#4", "E4", "F4", "F#4", "G4", "G#4"];
+    chords = ["A2","A#2", "B2","B#2", "C2", "C#2", "D2", "D#2", "E2", "F2","F#2", "G2","G#2","A3",
+    "A#3", "B3","B#3", "C3", "C#3", "D3", "D#3", "E3", "F3","F#3", "G3","G#3",
+      "A4", "A#4", "B4", "B#4", "C4", "C#4", "D4", "D#4", "E4", "F4", "F#4", "G4", "G#4"];
     synthChecks = [1,2,3,4,5,6,7,8];
 
 
@@ -38,11 +41,12 @@ export class ChordComponent implements OnInit {
         this.inst = new Tone.Synth().connect(this.hpFilter);
         this.inst2 = new Tone.Synth().connect(this.hpFilter);
         this.inst3 = new Tone.Synth().connect(this.hpFilter);
+        this.inst4 = new Tone.Synth().connect(this.hpFilter);
         this.hpFilter.connect(this.chorus);
         this.noteDelay = 0;
         this.chorusOn = false;
         this.chorus.wet.value = 0;
-
+        this.seventh = false;
         this.mute = false;
         this.min = false;
         this.chordVolWhenMuted = 0;
@@ -53,9 +57,11 @@ export class ChordComponent implements OnInit {
         this.inst.oscillator.type = "square";
         this.inst2.oscillator.type = "square";
         this.inst3.oscillator.type = "square";
+        this.inst4.oscillator.type = "square";
         this.inst.volume.value = -15;
         this.inst2.volume.value = -15;
         this.inst3.volume.value = -15;
+        this.inst4.volume.value = -100;
         this.delay.wet.value = 0;
         this.chorus.connect(this.delay);
         this.waveCounter = 2;
@@ -67,13 +73,25 @@ export class ChordComponent implements OnInit {
               let note = parseInt(trigger);
               if(this.min == true){
                 this.inst.triggerAttackRelease(this.chords[trigger], '8n', time);
+                
                 this.inst2.triggerAttackRelease(this.chords[note+3], '8n', time + this.noteDelay);
+                
                 this.inst3.triggerAttackRelease(this.chords[note+7], '8n', time + this.noteDelay*2);
+                if(this.seventh){
+                  this.inst4.triggerAttackRelease(this.chords[+11], '8n', time + this.noteDelay*3)
+                }
               }
               else{
                 this.inst.triggerAttackRelease(this.chords[trigger], '8n', time);
+                console.log(this.chords[trigger]);
                 this.inst2.triggerAttackRelease(this.chords[note+4], '8n', time + this.noteDelay);
+                console.log(this.chords[note+4]);
                 this.inst3.triggerAttackRelease(this.chords[note+7], '8n', time + this.noteDelay*2);
+                console.log(this.chords[note+7]);
+                if(this.seventh){
+                  this.inst4.triggerAttackRelease(this.chords[+11], '8n', time + this.noteDelay*3)
+                  console.log(this.chords[note+11]);
+                }
               }  
               
             }
@@ -187,7 +205,16 @@ export class ChordComponent implements OnInit {
     this.inst2.volume.value = synthVolSlider.value;
     this.inst3.volume.value = synthVolSlider.value;
   }
-
+  seventhChord(){
+    if(!this.seventh){
+      this.inst4.volume.value = this.inst.volume.value;
+      this.seventh = true;
+    }
+    else{
+      this.inst4.volume.value = -100;
+      this.seventh = false;
+    }
+  }
   
 
 }

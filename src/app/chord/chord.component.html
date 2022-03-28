@@ -29,54 +29,55 @@
     <div class="col-1">
         <input type="checkbox" class="check" id="checkChord8">
     </div>
-    <div class="col-4">
+    <div class="col-4" style="display: inline-flex;">
         <button class="buttonM m-1" (click)="muteChord()" [ngClass]="mute ? 'textRed': 'textWhite'">Mute</button>
         <button class="buttonM m-1" (click)="chorusOnOff()" [ngClass]="chorusOn ? 'textRed': 'textWhite'">Chorus</button>
         <button class="buttonM m-1" (click)="waveChange()" *ngIf="inst.oscillator.type == 'sawtooth'">Wave &#9706;</button>
         <button class="buttonM m-1" (click)="waveChange()" *ngIf="inst.oscillator.type == 'square'">Wave &#9632;</button>
         <button class="buttonM m-1" (click)="waveChange()" *ngIf="inst.oscillator.type == 'triangle'">Wave &#9650;</button>
+        <button class="buttonM m-1" (click)="seventhChord()" [ngClass]="seventh ? 'textRed': 'textWhite'">7th</button>
     </div>
 </div>
 
 <div class="row">
     <div class="col-1 ">  
         <div class="slidecontainer" >
-            <input type="range" class="slider" id="checkChord1Pitch"max="25" min="0"step="1" value="4" (mouseup)="resetChordPitch()">
+            <input type="range" class="slider" id="checkChord1Pitch"max="25" min="0"step="1" value="17" (mouseup)="resetChordPitch()">
         </div>
     </div>
     <div class="col-1" >
         <div class="slidecontainer">
-            <input type="range" class="slider" id="checkChord2Pitch"max="25" min="0"step="1" value="4" (mouseup)="resetChordPitch()">
+            <input type="range" class="slider" id="checkChord2Pitch"max="25" min="0"step="1" value="17" (mouseup)="resetChordPitch()">
         </div>
     </div>
     <div class="col-1">
         <div class="slidecontainer">
-            <input type="range" class="slider" id="checkChord3Pitch" max="25" min="0"step="1" value="4" (mouseup)="resetChordPitch()"> 
+            <input type="range" class="slider" id="checkChord3Pitch" max="25" min="0"step="1" value="17" (mouseup)="resetChordPitch()"> 
         </div>
     </div>
     <div class="col-1">
         <div class="slidecontainer">
-            <input type="range" class="slider" id="checkChord4Pitch"max="25" min="0"step="1" value="4" (mouseup)="resetChordPitch()"> 
+            <input type="range" class="slider" id="checkChord4Pitch"max="25" min="0"step="1" value="17" (mouseup)="resetChordPitch()"> 
         </div>
     </div>
     <div class="col-1">
         <div class="slidecontainer">
-            <input type="range" class="slider" id="checkChord5Pitch"max="25" min="0"step="1" value="4" (mouseup)="resetChordPitch()"> 
+            <input type="range" class="slider" id="checkChord5Pitch"max="25" min="0"step="1" value="17" (mouseup)="resetChordPitch()"> 
         </div>
     </div>
     <div class="col-1">
         <div class="slidecontainer">
-            <input type="range" class="slider" id="checkChord6Pitch"max="25" min="0"step="1" value="4" (mouseup)="resetChordPitch()">
+            <input type="range" class="slider" id="checkChord6Pitch"max="25" min="0"step="1" value="17" (mouseup)="resetChordPitch()">
         </div>
     </div>
     <div class="col-1">
         <div class="slidecontainer">
-            <input type="range" class="slider" id="checkChord7Pitch"max="25" min="0"step="1" value="4" (mouseup)="resetChordPitch()">
+            <input type="range" class="slider" id="checkChord7Pitch"max="25" min="0"step="1" value="17" (mouseup)="resetChordPitch()">
         </div>
     </div>
     <div class="col-1">
         <div class="slidecontainer">
-            <input type="range" class="slider" id="checkChord8Pitch"max="25" min="0"step="1" value="4" (mouseup)="resetChordPitch()">
+            <input type="range" class="slider" id="checkChord8Pitch"max="25" min="0"step="1" value="17" (mouseup)="resetChordPitch()">
         </div>
     </div>
     <div class="col-2" >
