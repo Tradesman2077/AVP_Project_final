@@ -1,6 +1,12 @@
-# AudioBox
+# Dt-01 AudioBox
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 13.2.4.
+This groovebox was created using tone.js and angular. The box was designed to be like 90s grooveboxes from yamaha and roland. A simple guide to using the box is below.
+
+## Guide
+### Overview
+The dt-01 works using several different lanes which represent the different soudns or instruments. Each instrument has its own characteristics and parameters. Using the checkboxes to inpout notes at a point in the timeline along with the pitch sliders, you can create insteresting grooves or melodies.
+### Transport section
 
 ## Development server
 
