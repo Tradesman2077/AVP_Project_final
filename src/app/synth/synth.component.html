@@ -23,7 +23,7 @@
         <div class="col-2">
             <p style="font-size:1.5vw;">Master Vol</p>
             <div class="slidecontainer2">
-                <input type="range" class="slider" id="vol" min="-30" max="20" step="1" value="0"  (mouseup)="changeVol()"  [(ngModel)]="masterVol">
+                <input type="range" class="slider" id="vol" min="-30" max="20" step="1" value="0"  (touchend)="changeVol()"  [(ngModel)]="masterVol">
             </div>
         </div>
        
