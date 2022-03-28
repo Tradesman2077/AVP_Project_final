@@ -42,47 +42,47 @@
 <div class="row">
     <div class="col-1 ">  
         <div class="slidecontainer" >
-            <input type="range" class="slider" id="checkChord1Pitch"max="25" min="0"step="1" value="17" (mouseup)="resetChordPitch()">
+            <input type="range" class="slider" id="checkChord1Pitch"max="25" min="0"step="1" value="17" (mouseup)="resetChordPitch()" (touchend)="resetChordPitch()">
         </div>
     </div>
     <div class="col-1" >
         <div class="slidecontainer">
-            <input type="range" class="slider" id="checkChord2Pitch"max="25" min="0"step="1" value="17" (mouseup)="resetChordPitch()">
+            <input type="range" class="slider" id="checkChord2Pitch"max="25" min="0"step="1" value="17" (mouseup)="resetChordPitch()" (touchend)="resetChordPitch()">
         </div>
     </div>
     <div class="col-1">
         <div class="slidecontainer">
-            <input type="range" class="slider" id="checkChord3Pitch" max="25" min="0"step="1" value="17" (mouseup)="resetChordPitch()"> 
+            <input type="range" class="slider" id="checkChord3Pitch" max="25" min="0"step="1" value="17" (mouseup)="resetChordPitch()" (touchend)="resetChordPitch()"> 
         </div>
     </div>
     <div class="col-1">
         <div class="slidecontainer">
-            <input type="range" class="slider" id="checkChord4Pitch"max="25" min="0"step="1" value="17" (mouseup)="resetChordPitch()"> 
+            <input type="range" class="slider" id="checkChord4Pitch"max="25" min="0"step="1" value="17" (mouseup)="resetChordPitch()" (touchend)="resetChordPitch()"> 
         </div>
     </div>
     <div class="col-1">
         <div class="slidecontainer">
-            <input type="range" class="slider" id="checkChord5Pitch"max="25" min="0"step="1" value="17" (mouseup)="resetChordPitch()"> 
+            <input type="range" class="slider" id="checkChord5Pitch"max="25" min="0"step="1" value="17" (mouseup)="resetChordPitch()" (touchend)="resetChordPitch()"> 
         </div>
     </div>
     <div class="col-1">
         <div class="slidecontainer">
-            <input type="range" class="slider" id="checkChord6Pitch"max="25" min="0"step="1" value="17" (mouseup)="resetChordPitch()">
+            <input type="range" class="slider" id="checkChord6Pitch"max="25" min="0"step="1" value="17" (mouseup)="resetChordPitch()" (touchend)="resetChordPitch()">
         </div>
     </div>
     <div class="col-1">
         <div class="slidecontainer">
-            <input type="range" class="slider" id="checkChord7Pitch"max="25" min="0"step="1" value="17" (mouseup)="resetChordPitch()">
+            <input type="range" class="slider" id="checkChord7Pitch"max="25" min="0"step="1" value="17" (mouseup)="resetChordPitch()" (touchend)="resetChordPitch()">
         </div>
     </div>
     <div class="col-1">
         <div class="slidecontainer">
-            <input type="range" class="slider" id="checkChord8Pitch"max="25" min="0"step="1" value="17" (mouseup)="resetChordPitch()">
+            <input type="range" class="slider" id="checkChord8Pitch"max="25" min="0"step="1" value="17" (mouseup)="resetChordPitch()" (touchend)="resetChordPitch()">
         </div>
     </div>
     <div class="col-2" >
         <div class="slidecontainer">
-            <input type="range" class="slider" id="chordVol"max="10" min="-100"step="1" value="-20" (mouseup)="changeChordVol()">
+            <input type="range" class="slider" id="chordVol"max="10" min="-100"step="1" value="-20" (mouseup)="changeChordVol()" (touchend)="changeChordVol()">
         </div>
     </div>
     <div class="col-2">
@@ -92,19 +92,19 @@
 <hr>
 <div class="row mt-1">
     <div class="col-3">
-        <input type="range" class="slider" id="Major/Minor"max="1" min="0"step="1" value="0" (mouseup)="majorMinorSwitch()" style="width: 25%;">
+        <input type="range" class="slider" id="Major/Minor"max="1" min="0"step="1" value="0" (mouseup)="majorMinorSwitch()" (touchend)="majorMinorSwitch()"  style="width: 25%;">
         <label class="label" for="filterFreq">Major/Minor</label>
     </div>
     <div class="col-3">
-        <input type="range" class="slider" id="noteDelay"max="0.5" min="0"step="0.1" value="0" (mouseup)="noteDelayChange()" style="width: 25%" >
+        <input type="range" class="slider" id="noteDelay"max="0.5" min="0"step="0.1" value="0" (mouseup)="noteDelayChange()" (touchend)="noteDelayChange()"  style="width: 25%" >
         <label class="label" for="filterFreq">Note Delay</label>
     </div>
     <div class="col-3">
-        <input type="range" class="slider" id="changeDetune"max="48" min="0"step="1" value="0" (mouseup)="changeDetune()" style="width: 25%">
+        <input type="range" class="slider" id="changeDetune"max="48" min="0"step="1" value="0" (mouseup)="changeDetune()" (touchend)="changeDetune()" style="width: 25%">
         <label class="label" for="filterFreq">Detune</label>
     </div>
     <div class="col-3">
-        <input type="range" class="slider" id="delayFeedbackChord"max="1" min="0"step="0.01" value="0" (mouseup)="changeDelayAmt()" style="width: 25%">
+        <input type="range" class="slider" id="delayFeedbackChord"max="1" min="0"step="0.01" value="0" (mouseup)="changeDelayAmt()" (touchend)="changeDelayAmt()" style="width: 25%">
         <label class="label" for="delayInput">Delay Amt</label>
     </div>
 </div>
