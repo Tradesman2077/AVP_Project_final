@@ -127,6 +127,7 @@ export class ChordComponent implements OnInit {
         this.inst.volume.value = -100;
         this.inst2.volume.value = -100;
         this.inst3.volume.value = -100;
+        this.inst4.volume.value = -100;
     }
   }
   unMute(){
@@ -135,6 +136,7 @@ export class ChordComponent implements OnInit {
         this.inst.volume.value = this.chordVolWhenMuted;
         this.inst2.volume.value = this.chordVolWhenMuted;
         this.inst3.volume.value = this.chordVolWhenMuted;
+        this.inst4.volume.value = this.chordVolWhenMuted;
       }
   }
   majorMinorSwitch(){
