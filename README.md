@@ -9,7 +9,11 @@ The dt-01 works using several different lanes which represent the different soud
 ### Transport section
 ![transport](https://user-images.githubusercontent.com/42988203/160382025-30a25c74-fe24-41d2-86a3-0fd1cbd60f89.jpg)
 
-From left to right there is the title and then a display which shows a parameter being edited, in the picture it is the project bpm (beats per minute). Next is a small waveform display that shows the waveform of the audio output of the groovebox. Next is the master volume and the bpm of the groovebox. Finally there are three buttons,  start stop and unmute. The start and stop buttons do as you would imagine, they start and stop the groovebox.  
+From left to right there is the title and then a display which shows a parameter being edited, in the picture it is the project bpm (beats per minute). Next is a small waveform display that shows the waveform of the audio output of the groovebox. Next is the master volume and the bpm of the groovebox. Finally there are three buttons,  start stop and unmute. The start and stop buttons do as you would imagine, they start and stop the groovebox. The 'unMute' button unmutes all tracks that are muted. The numbered strip at the top represents the steps in the beat and the step coloured red is the currently playing step.
+
+### Channels
+
+
 
 ## Development server
 
