@@ -167,6 +167,7 @@ export class ChordComponent implements OnInit {
     this.inst.detune.value = this.detuneVal;
     this.inst2.detune.value = this.detuneVal;
     this.inst3.detune.value = this.detuneVal;
+    this.inst4.detune.value = this.detuneVal;
   }
   changeDelayAmt(){
     let slider = <HTMLInputElement>document.getElementById("delayFeedbackChord");
@@ -179,17 +180,21 @@ export class ChordComponent implements OnInit {
         this.inst.oscillator.type = "sawtooth";
         this.inst2.oscillator.type = "sawtooth";
         this.inst3.oscillator.type = "sawtooth";
+        this.inst4.oscillator.type = "sawtooth";
+
     }
     else if(this.waveCounter == 0){
         this.inst.oscillator.type = "triangle";
         this.inst2.oscillator.type = "triangle";
         this.inst3.oscillator.type = "triangle";
+        this.inst4.oscillator.type = "triangle";
         this.waveCounter++;
     }
     else{
         this.inst.oscillator.type = "square";
         this.inst2.oscillator.type = "square";
         this.inst3.oscillator.type = "square";
+        this.inst4.oscillator.type = "square";
         this.waveCounter++;
     }
   }
@@ -206,6 +211,7 @@ export class ChordComponent implements OnInit {
     this.inst.volume.value = synthVolSlider.value;
     this.inst2.volume.value = synthVolSlider.value;
     this.inst3.volume.value = synthVolSlider.value;
+    this.inst4.volume.value = synthVolSlider.value;
   }
   seventhChord(){
     if(!this.seventh){
