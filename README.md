@@ -6,7 +6,7 @@ This groovebox was created using tone.js and angular. The box was designed to be
 ## Guide
 
 ### Overview
-The dt-01 works using several different lanes which represent the different soudns or instruments. Each instrument has its own characteristics and parameters. Using the checkboxes to inpout notes at a point in the timeline along with the pitch sliders, you can create insteresting grooves or melodies.
+The dt-01 works using several different lanes which represent the different sounds or instruments. Each instrument has its own characteristics and parameters. Using the checkboxes to inpout notes at a point in the timeline along with the pitch sliders, you can create insteresting grooves or melodies.
 
 ### Transport section
 ![transport](https://user-images.githubusercontent.com/42988203/160382025-30a25c74-fe24-41d2-86a3-0fd1cbd60f89.jpg)
