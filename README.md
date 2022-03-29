@@ -18,6 +18,24 @@ From left to right there is the title and then a display which shows a parameter
 
 Each channel has checkboxes that represent a selcted note or step. The sliders below the steps represent the pitch or playback speed of the sound. Each channel has various parameters depending on the channel and will effect the sound in different ways.
 
+### Reference for controls
+
+Buttons-
+
+Random(Synth) - Randomizes the frequency values of each step.
+Wave(Synth/Chord) - Selects the waveform of the channels synth voices.
+Chorus(Chord) - Adds a chorus effect to the sound.
+7th(Chord) - Adds a seventh note to the currently playing chord.
+Reverse(Sampler) - Reverses the currently loaded sample.
+Reverb(Clap) - adds a reverberation effect to the sound.
+Distortion(Bass/Tom) - Adds distortion effect to the sound.
+Mute(All) - Mutes the track, can be unmuted with a second press or via the unmute button.
+
+Sliders-
+
+
+
+
 ## Development server
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
