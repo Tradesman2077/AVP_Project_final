@@ -21,17 +21,29 @@ Each channel has checkboxes that represent a selcted note or step. The sliders b
 ### Reference for controls
 
 Buttons-
-
-Random(Synth) - Randomizes the frequency values of each step.
-Wave(Synth/Chord) - Selects the waveform of the channels synth voices.
-Chorus(Chord) - Adds a chorus effect to the sound.
-7th(Chord) - Adds a seventh note to the currently playing chord.
-Reverse(Sampler) - Reverses the currently loaded sample.
-Reverb(Clap) - adds a reverberation effect to the sound.
-Distortion(Bass/Tom) - Adds distortion effect to the sound.
-Mute(All) - Mutes the track, can be unmuted with a second press or via the unmute button.
+Random(Synth) - Randomizes the frequency values of each step.\
+Wave(Synth/Chord) - Selects the waveform of the channels synth voices.\
+Chorus(Chord) - Adds a chorus effect to the sound.\
+7th(Chord) - Adds a seventh note to the currently playing chord.\
+Reverse(Sampler) - Reverses the currently loaded sample.\
+Reverb(Clap) - adds a reverberation effect to the sound.\
+Distortion(Bass/Tom) - Adds distortion effect to the sound.\
+Mute(All) - Mutes the track, can be unmuted with a second press or via the unmute button.\
 
 Sliders-
+Filter Attack(synth) - Overn the amount of time the filter takes to open. This is the attack portion of the filter envelope.\
+Amp Release(synth) - This controls the amount of time the sound fades out. It controls the release portion of the amplitude envelope.\
+Filter env(synth) - This controls the amount of envelope modulation applied to the filter cutoff frequency.\
+Delay amt(synth)- This adds a ping pong style delay to the sound.
+
+
+Major/Minor(chord) - Change sthe current chord to major/minor based on the root note from the slider.\
+Note Delay(chord) - Spreads the notes of the chord over time, the higher the slider value the longer the time between notes.\
+Detune(chord) - Detunes the notes from there base frequency.
+Delay Amount(chord) - Adds a delay effect to the sound.
+
+
+
 
 
 
