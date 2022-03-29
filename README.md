@@ -20,27 +20,40 @@ Each channel has checkboxes that represent a selcted note or step. The sliders b
 
 ### Reference for controls
 
-Buttons-
+Buttons-\
 Random(Synth) - Randomizes the frequency values of each step.\
 Wave(Synth/Chord) - Selects the waveform of the channels synth voices.\
 Chorus(Chord) - Adds a chorus effect to the sound.\
 7th(Chord) - Adds a seventh note to the currently playing chord.\
 Reverse(Sampler) - Reverses the currently loaded sample.\
 Reverb(Clap) - adds a reverberation effect to the sound.\
+Choose file(sampler) - Opens a fil selection box to add an audio sample to the track.\
+Preview(sampler) - Plays the currently loaded audio sample.\
 Distortion(Bass/Tom) - Adds distortion effect to the sound.\
 Mute(All) - Mutes the track, can be unmuted with a second press or via the unmute button.\
 
-Sliders-
+Sliders-\
 Filter Attack(synth) - Overn the amount of time the filter takes to open. This is the attack portion of the filter envelope.\
 Amp Release(synth) - This controls the amount of time the sound fades out. It controls the release portion of the amplitude envelope.\
 Filter env(synth) - This controls the amount of envelope modulation applied to the filter cutoff frequency.\
-Delay amt(synth)- This adds a ping pong style delay to the sound.
-
-
+Delay amt(synth)- This adds a ping pong style delay to the sound.\
 Major/Minor(chord) - Change sthe current chord to major/minor based on the root note from the slider.\
 Note Delay(chord) - Spreads the notes of the chord over time, the higher the slider value the longer the time between notes.\
-Detune(chord) - Detunes the notes from there base frequency.
-Delay Amount(chord) - Adds a delay effect to the sound.
+Detune(chord) - Detunes the notes from there base frequency.\
+Delay Amount(chord) - Adds a delay effect to the sound.\
+Start(sampler) - Controls the point in the audio sample that the channel will begin playing from.\
+End(sampler) - Controls the point in the audio sample that the channel will stop playing.\
+Clp/Sn(clap) - Changes the sound from a clap to a snare sound.\
+Echo(hat) - Adds an echo effect to the sound.\
+Attack noise(pluck) - Controls the volume of the attack portion of the pluck synth.\
+Resonance(pluck) - The amount of resonance of the pluck. Also correlates to the sustain duration.\
+Reverb(pluck) - Adds a reverberation effect to the sound.\
+Fold(pluck) - Changes the tone of distortion applied to the sound. Effects order of the Chebyshev polynomial which creates the equation which is applied to the incoming signal.\
+Release(bass/tom) - Controls the relaese portion of the amplitude envelope. Longer release times makes the sound fade out for longer.\
+Vol(all) - Volume of track.\
+
+
+
 
 
 
